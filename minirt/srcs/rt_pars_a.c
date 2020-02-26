@@ -13,7 +13,7 @@
 #include "minirt.h"
 #include "keys.h"
 
-int     ft_puis(int n, int m)
+int     ft_puis(int n, int m) //Penser à faire de cette fonction une fonction de la libft
 {
     int r;
 
