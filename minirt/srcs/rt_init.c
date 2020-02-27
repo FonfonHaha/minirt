@@ -21,6 +21,9 @@
 **	4 = erreur dans resolution : resolution missing
 **	5 = erreur lumiere ambiante
 **	6 = erreur couleur lumiere ambiante
+**	7 = erreur de coordonnee camera
+**	8 = erreur camera orientation
+**	9 = erreur camera fov
 */
 
 t_mlx	*rt_init()

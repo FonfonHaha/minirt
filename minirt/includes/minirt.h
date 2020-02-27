@@ -50,6 +50,16 @@ typedef struct	s_mlx
 	int		lum_a;
 	int		lum_a_ok;
 	int		lum_color;
+	float	cx;
+	float	cy;
+	float	cz;
+	int		ccoor_ok;
+	float	corix;
+	float	coriy;
+	float	coriz;
+	float	cori_ok;
+	int		cfov;
+	int		cfov_ok;
 	t_list	*obj;
 	t_list	*lum;
 }				t_mlx;
