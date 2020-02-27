@@ -20,7 +20,7 @@ int     rt_get_lratio(t_rtlist *lum, char *line)
     i = 0;
     if (!line[i])
         return (1);
-    lum->ratio = ft_atoi(line);
+    lum->ratio = ft_atof(line);
     lum->ratio_ok = 1;
     return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: pcoureau <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/25 18:02:37 by pcoureau          #+#    #+#             */
-/*   Updated: 2020/02/25 18:34:22 by pcoureau         ###   ########.fr       */
+/*   Updated: 2020/02/27 20:19:22 by pcoureau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,28 +28,28 @@
 typedef struct	s_list
 {
 	int				type;
-	int				x;
-	int				x2;
-	int				x3;
-	int				y;
-	int				y2;
-	int				y3;
-	int				z;
-	int				z2;
-	int				z3;
+	float				x;
+	float				x2;
+	float				x3;
+	float				y;
+	float				y2;
+	float				y3;
+	float				z;
+	float				z2;
+	float				z3;
 	int				coor_ok;
 	int				r;
 	int				g;
 	int				b;
 	int				color;
-	int				vx;
-	int				vy;
-	int				vz;
+	float				vx;
+	float				vy;
+	float				vz;
 	int				v_ok;
-	int				ratio;
+	float				ratio;
 	int				ratio_ok;
-	int				diam;
-    int             h;
+	float				diam;
+    float             h;
 	struct s_list	*next;
 }				t_rtlist;
 
@@ -78,9 +78,9 @@ typedef struct	s_mlx
 	t_rtlist	*lum;
 }				t_mlx;
 int     rt_color(int r, int g, int b);
-t_funct		rt_get_funct(char *s);
 int     rt_get_objcoor(t_rtlist *obj, char *line);
 typedef int			(*t_funct)(t_mlx *mlx, char *line);
+t_funct			rt_get_funct(char *s);
 int     rt_get_objvector(t_rtlist *obj, char *line);
 int     rt_get_objcolor(t_rtlist *obj, char *line);
 int     rt_pars_a(t_mlx *mlx, char *line);
