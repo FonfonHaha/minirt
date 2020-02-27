@@ -13,6 +13,7 @@
 #ifndef MINIRT_H
 # define MINIRT_H
 #include <stdio.h>
+#include <fcntl.h>
 
 /*
 ** type des objets:
@@ -76,7 +77,23 @@ typedef struct	s_mlx
 	t_rtlist	*obj;
 	t_rtlist	*lum;
 }				t_mlx;
+int     rt_color(int r, int g, int b);
+t_funct		rt_get_funct(char *s);
+int     rt_get_objcoor(t_rtlist *obj, char *line);
 typedef int			(*t_funct)(t_mlx *mlx, char *line);
-t_mlx			*rt_init();
+int     rt_get_objvector(t_rtlist *obj, char *line);
+int     rt_get_objcolor(t_rtlist *obj, char *line);
+int     rt_pars_a(t_mlx *mlx, char *line);
+int     rt_pars_bn(t_mlx *mlx, char *line);
+int     rt_pars_c(t_mlx *mlx, char *line);
+int     rt_pars_cy(t_mlx *mlx, char *line);
+int     rt_pars_l(t_mlx *mlx, char *line);
+int     rt_pars_pl(t_mlx *mlx, char *line);
+int     rt_pars_r(t_mlx *mlx, char *line);
+int     rt_pars_sp(t_mlx *mlx, char *line);
+int     rt_pars_sq(t_mlx *mlx, char *line);
+int     rt_pars_tr(t_mlx *mlx, char *line);
+int		rt_pars(t_mlx *mlx, const char *str);
+t_mlx			*rt_init(const char *str);
 int				rt_hook_keydown(int key, t_mlx *mlx);
 #endif

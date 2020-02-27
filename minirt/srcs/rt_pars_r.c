@@ -18,6 +18,8 @@ int     rt_past_r(t_mlx *mlx, char *line)
     int i;
 
     i = 0;
+    if (mlx->x_ok && mlx->y_ok)
+        return(20);
     while (line[i] && (line[i] < '0' || line[i] > '9'))
         i++;
     if (line[i])

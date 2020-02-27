@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   rt_pars_sq.c                                       :+:      :+:    :+:   */
+/*   rt_pars_cy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pcoureau <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -13,7 +13,7 @@
 #include "minirt.h"
 #include "keys.h"
 
-int     rt_get_sqheight(t_rtlist *obj, char *line)
+int     rt_get_cyheight(t_rtlist *obj, char *line)
 {
     if (!line)
         return (19);
@@ -21,21 +21,31 @@ int     rt_get_sqheight(t_rtlist *obj, char *line)
     return (0);
 }
 
-int     rt_pars_sq_ii(t_rtlist *obj, char **tab)
+int     rt_pars_cydiam(t_rtlist *obj, char *line)
+{
+    if (!line)
+        return (18);
+    obj->diam = ft_atoi(line);
+    return (0);
+}
+
+int     rt_pars_cy_ii(t_rtlist *obj, char **tab)
 {
     int ret;
     if (ret = rt_get_objcoor(obj, tab[1]))
         return (ret);
     if (ret = rt_get_objvector(obj, tab[2]))
         return (ret);
-    if (ret = rt_get_sqheight(obj, tab[3]))
+    if (ret = rt_get_sqdiam(obj, tab[3]))
         return (ret);
-    if (ret = rt_get_objcolor(obj, tab[4]))
+    if (ret = rt_get_sqheight(obj, tab[4]))
+        return (ret);
+    if (ret = rt_get_objcolor(obj, tab[5]))
         return (ret);
     return (0);
 }
 
-int     rt_pars_sq(t_mlx *mlx, char *line)
+int     rt_pars_cy(t_mlx *mlx, char *line)
 {
     int         ret;
     char        **tab;
@@ -46,11 +56,11 @@ int     rt_pars_sq(t_mlx *mlx, char *line)
     if (!(obj = malloc(sizeof(t_rtlist))))
         return(13);
     obj->next = NULL;
-    obj->type = 3;
+    obj->type = 4;
     last->next = obj;
     if (!(tab = ft_split(line, ' ')))
         return (14);
-    ret = rt_pars_sp_ii(obj, tab);
+    ret = rt_pars_cy_ii(obj, tab);
     tab = ft_deltab(tab);
     return (ret);
 }

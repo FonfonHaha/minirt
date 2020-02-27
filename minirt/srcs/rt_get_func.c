@@ -19,11 +19,11 @@ static void	create_tab(t_funct *tab)
 	tab['A'] = rt_pars_a;
 	tab['c'] = rt_pars_c;
 	tab['l'] = rt_pars_l;
-	tab['p'] = rt_pars_p;
+	tab['p'] = rt_pars_pl;
 	tab['s'] = rt_pars_sp;
 	tab['S'] = rt_pars_sq;
-	tab['c'] = rt_pars_c;
-	tab['t'] = rt_pars_t;
+	tab['C'] = rt_pars_cy;
+	tab['t'] = rt_pars_tr;
 	tab['\n'] = rt_pars_bn;
 }
 
@@ -40,5 +40,8 @@ t_funct		rt_get_funct(char *s)
 	if (s[0] == 's')
 		if (s[1] == 'q')
 			return (tab[(int)'S']);
+	if (s[0] == 'c')
+		if (s[1] == 'y')
+			return (tab[(int)'C']);
 	return (tab[(int)s[0]]);
 }

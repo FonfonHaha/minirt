@@ -1,42 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   rt_pars.c                                          :+:      :+:    :+:   */
+/*   rt_pars_bn.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pcoureau <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/02/25 18:31:48 by pcoureau          #+#    #+#             */
-/*   Updated: 2020/02/25 18:45:01 by pcoureau         ###   ########.fr       */
+/*   Created: 2020/02/25 22:33:19 by pcoureau          #+#    #+#             */
+/*   Updated: 2020/02/25 22:33:21 by pcoureau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 #include "keys.h"
 
-int		rt_pars(t_mlx *mlx, const char *str)
+int     rt_pars_bn(t_mlx *mlx, char *line)
 {
-	int		i;
-	int		fd;
-	int		ret;
-	int		ret_funct;
-	char	*line;
-	t_funct	funct;
-
-	i = 0;
-	fd = open(str, O_RDONLY);
-	if (fd == -1)
-		return (1);
-	while ((ret = get_next_line_two(fd, &line)) > 0)
-	{
-		if(!(funct = rt_get_funct(line)))
-		{
-			free(line);
-			return(3);
-		}
-		if ((ret_funct = funct(mlx, line)))
-			return (ret_funct);
-		free(line);
-	}
-	if (ret == -1)
-		return (2);
+    return (0);
 }

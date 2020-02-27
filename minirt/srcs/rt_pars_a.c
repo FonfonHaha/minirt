@@ -37,6 +37,7 @@ int     rt_past_a_ii(t_mlx *mlx, char *line)
     if (!line[i])
         return (6);
     mlx->lum_color = mlx->lum_color + ft_atoi(line + i) * ft_puis(2, 0);
+    mlx->lum_a_ok = 1;
     return (0); 
 }
 
@@ -45,6 +46,8 @@ int     rt_past_a(t_mlx *mlx, char *line)
     int i;
 
     i = 0;
+    if (mlx->lum_a_ok)
+        return (21);
     while (line[i] && (line[i] < '0' || line[i] > '9'))
         i++;
     if (line[i])
