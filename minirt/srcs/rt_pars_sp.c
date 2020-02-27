@@ -24,11 +24,11 @@ int     rt_pars_spdiam(t_rtlist *obj, char *line)
 int     rt_pars_sp_ii(t_rtlist *obj, char **tab)
 {
     int ret;
-    if (ret = rt_get_objcoor(obj, tab[1]))
+    if ((ret = rt_get_objcoor(obj, tab[1])))
         return (ret);
-    if (ret = rt_get_spdiam(obj, tab[2]))
+    if ((ret = rt_get_spdiam(obj, tab[2])))
         return (ret);
-    if (ret = rt_get_objcolor(obj, tab[3]))
+    if ((ret = rt_get_objcolor(obj, tab[3])))
         return (ret);
     return (0);
 }

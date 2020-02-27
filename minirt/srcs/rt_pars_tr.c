@@ -57,13 +57,13 @@ int     rt_pars_cy_ii(t_rtlist *obj, char **tab)
 {
     int ret;
 
-    if (ret = rt_get_trcoor(obj, tab[1]))
+    if ((ret = rt_get_trcoor(obj, tab[1])))
         return (ret);
-    if (ret = rt_get_trcoor2(obj, tab[2]))
+    if ((ret = rt_get_trcoor2(obj, tab[2])))
         return (ret);
-    if (ret = rt_get_trcoor3(obj, tab[3]))
+    if ((ret = rt_get_trcoor3(obj, tab[3])))
         return (ret);
-    if (ret = rt_get_objcolor(obj, tab[4]))
+    if ((ret = rt_get_objcolor(obj, tab[4])))
         return (ret);
     return (0);
 }
