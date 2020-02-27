@@ -15,5 +15,7 @@
 
 int     rt_pars_bn(t_mlx *mlx, char *line)
 {
+    (void)mlx;
+    (void)line;
     return (0);
 }

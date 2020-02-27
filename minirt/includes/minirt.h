@@ -12,8 +12,11 @@
 
 #ifndef MINIRT_H
 # define MINIRT_H
+#include "libft.h"
 #include <stdio.h>
+#include <stdlib.h>
 #include <fcntl.h>
+#include "mlx.h"
 
 /*
 ** type des objets:
@@ -25,7 +28,7 @@
 ** 6 lumiere
 */
 
-typedef struct	s_list
+typedef struct	s_rtlist
 {
 	int				type;
 	float				x;
@@ -50,7 +53,7 @@ typedef struct	s_list
 	int				ratio_ok;
 	float				diam;
     float             h;
-	struct s_list	*next;
+	struct s_rtlist	*next;
 }				t_rtlist;
 
 typedef struct	s_mlx
@@ -61,7 +64,7 @@ typedef struct	s_mlx
 	int		x_ok;
 	int		y;
 	int		y_ok;
-	int		lum_a;
+	float		lum_a;
 	int		lum_a_ok;
 	int		lum_color;
 	float	cx;
