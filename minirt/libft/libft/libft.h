@@ -125,6 +125,7 @@ void	ft_advance(char *buff, int i);
 int		ft_rline(char **line, char *s, char *buff, int i);
 int		ft_end(char **line, char *s, int err);
 int		get_next_line(int fd, char **line);
+int		get_next_line_two(int fd, char **line);
 int		ft_strlengnl(char const *s);
 char	*ft_strdupgnl(const char *s);
 char	*ft_strdcpy(const char *s);

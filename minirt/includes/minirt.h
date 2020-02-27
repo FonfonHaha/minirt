@@ -85,6 +85,7 @@ int     rt_get_objcoor(t_rtlist *obj, char *line);
 typedef int			(*t_funct)(t_mlx *mlx, char *line);
 t_funct			rt_get_funct(char *s);
 int     rt_get_objvector(t_rtlist *obj, char *line);
+t_rtlist	*rt_lstlast(t_rtlist *lst);
 int     rt_get_objcolor(t_rtlist *obj, char *line);
 int     rt_pars_a(t_mlx *mlx, char *line);
 int     rt_pars_bn(t_mlx *mlx, char *line);

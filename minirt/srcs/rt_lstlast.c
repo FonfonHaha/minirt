@@ -1,23 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   rt_keys.c                                          :+:      :+:    :+:   */
+/*   rt_lstlast.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pcoureau <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/02/25 17:59:40 by pcoureau          #+#    #+#             */
-/*   Updated: 2020/02/25 18:06:21 by pcoureau         ###   ########.fr       */
+/*   Created: 2020/02/25 22:33:19 by pcoureau          #+#    #+#             */
+/*   Updated: 2020/02/25 22:33:21 by pcoureau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 #include "keys.h"
 
-int	rt_hook_keydown(int key, t_mlx *mlx)
+t_rtlist	*rt_lstlast(t_rtlist *lst)
 {
-	if (!mlx)
-		return (0);
-	if (key == K_ESC)
-		exit(EXIT_SUCCESS);
-	return (0);
+	if (!lst)
+		return (NULL);
+	while (lst->next != NULL)
+		lst = lst->next;
+	return (lst);
 }

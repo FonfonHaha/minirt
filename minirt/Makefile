@@ -17,7 +17,6 @@ SRC		= main.c \
 		  rt_color.c \
 		  rt_get_func.c \
 		  rt_get_param.c \
-		  rt_keys.c \
 		  rt_pars_a.c \
 		  rt_pars_bn.c \
 		  rt_pars_c.c \
@@ -29,6 +28,7 @@ SRC		= main.c \
 		  rt_pars_sq.c \
 		  rt_pars_tr.c \
 		  rt_pars.c \
+		  rt_lstlast.c
 
 OBJ		= $(addprefix $(OBJDIR),$(SRC:.c=.o))
 CC		= gcc

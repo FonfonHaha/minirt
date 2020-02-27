@@ -39,4 +39,5 @@ int		rt_pars(t_mlx *mlx, const char *str)
 	}
 	if (ret == -1)
 		return (2);
+	return (0);
 }

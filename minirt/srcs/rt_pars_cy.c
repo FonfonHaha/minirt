@@ -21,7 +21,7 @@ int     rt_get_cyheight(t_rtlist *obj, char *line)
     return (0);
 }
 
-int     rt_pars_cydiam(t_rtlist *obj, char *line)
+int     rt_get_cydiam(t_rtlist *obj, char *line)
 {
     if (!line)
         return (18);
@@ -36,9 +36,9 @@ int     rt_pars_cy_ii(t_rtlist *obj, char **tab)
         return (ret);
     if ((ret = rt_get_objvector(obj, tab[2])))
         return (ret);
-    if ((ret = rt_get_sqdiam(obj, tab[3])))
+    if ((ret = rt_get_cydiam(obj, tab[3])))
         return (ret);
-    if ((ret = rt_get_sqheight(obj, tab[4])))
+    if ((ret = rt_get_cyheight(obj, tab[4])))
         return (ret);
     if ((ret = rt_get_objcolor(obj, tab[5])))
         return (ret);
@@ -52,12 +52,15 @@ int     rt_pars_cy(t_mlx *mlx, char *line)
     t_rtlist    *obj;
     t_rtlist    *last;
 
-    last = ft_lstlast(mlx->obj);
+    last = rt_lstlast(mlx->obj);
     if (!(obj = malloc(sizeof(t_rtlist))))
         return(13);
     obj->next = NULL;
     obj->type = 4;
-    last->next = obj;
+    if (!last)
+        mlx->obj = obj;
+    else
+        last->next = obj;
     if (!(tab = ft_split(line, ' ')))
         return (14);
     ret = rt_pars_cy_ii(obj, tab);

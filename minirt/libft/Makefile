@@ -86,7 +86,8 @@ SRCS    =	libft/ft_isascii.c \
 			ft_itoap.c \
 			ft_printf.c \
 			get_next_line_utils.c \
-			get_next_line.c
+			get_next_line.c \
+			get_next_line_two.c
 
 SRCDIR    = ./
 CC        = gcc

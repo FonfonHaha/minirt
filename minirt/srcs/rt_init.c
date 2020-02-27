@@ -79,7 +79,7 @@ t_mlx	*rt_init(const char *str)
 	char *line;
 
 	line = NULL;
-	if (!(mlx = ft_calloc(1, sizeof(t_mlx*))))
+	if (!(mlx = ft_calloc(1, sizeof(*mlx))))
 		return (NULL);
 	mlx->ptr = mlx_init();
 	mlx->win = mlx_new_window(mlx->ptr, 500, 500, "miniRT");

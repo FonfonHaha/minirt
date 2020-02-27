@@ -13,7 +13,7 @@
 #include "minirt.h"
 #include "keys.h"
 
-int     rt_pars_spdiam(t_rtlist *obj, char *line)
+int     rt_get_spdiam(t_rtlist *obj, char *line)
 {
     if (!line)
         return (18);
@@ -40,12 +40,15 @@ int     rt_pars_sp(t_mlx *mlx, char *line)
     t_rtlist    *obj;
     t_rtlist    *last;
 
-    last = ft_lstlast(mlx->obj);
+    last = rt_lstlast(mlx->obj);
     if (!(obj = malloc(sizeof(t_rtlist))))
         return(13);
     obj->next = NULL;
     obj->type = 1;
-    last->next = obj;
+    if (!last)
+        mlx->obj = obj;
+    else
+        last->next = obj;
     if (!(tab = ft_split(line, ' ')))
         return (14);
     ret = rt_pars_sp_ii(obj, tab);

@@ -13,7 +13,7 @@
 #include "minirt.h"
 #include "keys.h"
 
-int     rt_past_r(t_mlx *mlx, char *line)
+int     rt_pars_r(t_mlx *mlx, char *line)
 {
     int i;
 

@@ -21,6 +21,7 @@ int     rt_pars_pl_ii(t_rtlist *obj, char **tab)
     if ((ret = rt_get_objvector(obj, tab[2])))
         return (ret);
     if ((ret = rt_get_objcolor(obj, tab[3])))
+        return (ret);
     return (0);
 }
 
@@ -31,12 +32,15 @@ int     rt_pars_pl(t_mlx *mlx, char *line)
     t_rtlist    *obj;
     t_rtlist    *last;
 
-    last = ft_lstlast(mlx->obj);
+    last = rt_lstlast(mlx->obj);
     if (!(obj = malloc(sizeof(t_rtlist))))
-        return(13);
+        return (13);
     obj->next = NULL;
     obj->type = 2;
-    last->next = obj;
+    if (!last)
+        mlx->obj = obj;
+    else
+        last->next = obj;
     if (!(tab = ft_split(line, ' ')))
         return (14);
     ret = rt_pars_pl_ii(obj, tab);

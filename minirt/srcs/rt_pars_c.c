@@ -82,23 +82,24 @@ int     rt_pars_c(t_mlx *mlx, char *line)
     int i;
 
     i = 0;
-    while (line[i] && (line[i] < '0' && line [i] > '9' && line[i] != '-'))
+    while (line[i] && (line[i] < '0' || line [i] > '9') && line[i] != '-')
         i++;
     if (rt_get_ccoor(mlx, line + i))
         return (7);
     while (line[i] && ((line[i] >= '0' && line[i] <= '9') || line[i] == '-'
             || line[i] == ','))
         i++;
-    while (line[i] && (line[i] < '0' && line [i] > '9' && line[i] != '-'))
+    while (line[i] && (line[i] < '0' || line [i] > '9') && line[i] != '-')
         i++;
     if (rt_get_cori(mlx, line + i))
         return (8);
     while (line[i] && ((line[i] >= '0' && line[i] <= '9') || line[i] == '-'
             || line[i] == ','))
         i++;
-    while (line[i] && (line[i] < '0' && line [i] > '9'))
+    while (line[i] && (line[i] < '0' || line [i] > '9'))
         i++;
     if (rt_get_cfov(mlx, line + i))
         return (9);
+    //printf("--------------TEST----------\n\nx %f\ny %f\nz %f\nvx %f\nvy %f\nvz %f\nfov %d\n\n\n---------------TEST-------------\n", mlx->cx, mlx->cy, mlx->cz, mlx->corix, mlx->coriy, mlx->coriz, mlx->cfov);
     return (0);
 }

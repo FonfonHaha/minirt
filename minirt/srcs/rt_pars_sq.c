@@ -42,15 +42,18 @@ int     rt_pars_sq(t_mlx *mlx, char *line)
     t_rtlist    *obj;
     t_rtlist    *last;
 
-    last = ft_lstlast(mlx->obj);
+    last = rt_lstlast(mlx->obj);
     if (!(obj = malloc(sizeof(t_rtlist))))
         return(13);
     obj->next = NULL;
     obj->type = 3;
-    last->next = obj;
+    if (!last)
+        mlx->obj = obj;
+    else
+        last->next = obj;
     if (!(tab = ft_split(line, ' ')))
         return (14);
-    ret = rt_pars_sp_ii(obj, tab);
+    ret = rt_pars_sq_ii(obj, tab);
     tab = ft_deltab(tab);
     return (ret);
 }
