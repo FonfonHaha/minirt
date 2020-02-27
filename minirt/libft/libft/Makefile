@@ -12,6 +12,7 @@
 
 NAME    = libft.a
 SRCS    =	ft_isascii.c \
+			ft_puis.c \
 			ft_strlcpy.c \
 			ft_memcpy.c \
 			ft_toupper.c \

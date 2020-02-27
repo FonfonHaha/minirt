@@ -13,19 +13,6 @@
 #include "minirt.h"
 #include "keys.h"
 
-int     ft_puis(int n, int m) //Penser à faire de cette fonction une fonction de la libft
-{
-    int r;
-
-    r = 1;
-    while (m)
-    {
-        r = r * n;
-        m--;
-    }
-    return (r);
-}
-
 int     rt_past_a_ii(t_mlx *mlx, char *line)
 {
     int i;
