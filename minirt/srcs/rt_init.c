@@ -24,6 +24,16 @@
 **	7 = erreur de coordonnee camera
 **	8 = erreur camera orientation
 **	9 = erreur camera fov
+**	10 = erreur coordonnee lumiere objet
+**	11 = erreur orientation lumiere objet
+**	12 = erreur ratio lumiere objet
+**	13 = erreur malloc objet
+**	14 = erreur split objet
+**	15 = erreur coordonnee objet
+**	16 = erreur vector objet
+**	17 = erreur color objet
+**	18 = erreur diametre objet
+**	19 = erreur hauteur objet
 */
 
 t_mlx	*rt_init()

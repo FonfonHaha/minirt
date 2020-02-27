@@ -21,23 +21,36 @@
 ** 3 carre
 ** 4 cylindre
 ** 5 triangle
+** 6 lumiere
 */
 
 typedef struct	s_list
 {
 	int				type;
 	int				x;
+	int				x2;
+	int				x3;
 	int				y;
+	int				y2;
+	int				y3;
 	int				z;
+	int				z2;
+	int				z3;
+	int				coor_ok;
 	int				r;
 	int				g;
 	int				b;
+	int				color;
 	int				vx;
 	int				vy;
 	int				vz;
+	int				v_ok;
+	int				ratio;
+	int				ratio_ok;
 	int				diam;
+    int             h;
 	struct s_list	*next;
-}				t_list;
+}				t_rtlist;
 
 typedef struct	s_mlx
 {
@@ -57,11 +70,11 @@ typedef struct	s_mlx
 	float	corix;
 	float	coriy;
 	float	coriz;
-	float	cori_ok;
+	int		cori_ok;
 	int		cfov;
 	int		cfov_ok;
-	t_list	*obj;
-	t_list	*lum;
+	t_rtlist	*obj;
+	t_rtlist	*lum;
 }				t_mlx;
 typedef int			(*t_funct)(t_mlx *mlx, char *line);
 t_mlx			*rt_init();

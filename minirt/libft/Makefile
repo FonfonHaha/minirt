@@ -29,6 +29,7 @@ SRCS    =	libft/ft_isascii.c \
 			libft/ft_memccpy.c \
 			libft/ft_strchr.c \
 			libft/ft_strnstr.c \
+			libft/ft_deltab.c \
 			libft/ft_isalnum.c \
 			libft/ft_memchr.c \
 			libft/ft_strdup.c \
