@@ -17,7 +17,8 @@ int     rt_get_spdiam(t_rtlist *obj, char *line)
 {
     if (!line)
         return (18);
-    obj->diam = ft_atoi(line);
+    if ((obj->diam = ft_atoi(line)) < 0 )
+        return (18);
     return (0);
 }
 

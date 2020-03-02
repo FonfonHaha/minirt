@@ -83,7 +83,9 @@ int		main(int ac, char **av)
 	if (ac == 2)
 	{
 		if (!(mlx = rt_init(av[1])))
+		{
 			return (0);
+		}
 		check(mlx);
 		mlx_key_hook(mlx->win, rt_hook_keydown, mlx->ptr);
 		mlx_loop(mlx->ptr);

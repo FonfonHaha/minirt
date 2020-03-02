@@ -13,6 +13,19 @@
 #include "minirt.h"
 #include "keys.h"
 
+int     rt_pars_r_ii(t_mlx *mlx)
+{
+    if (mlx->x < 0)
+        mlx->x = 1;
+    if (mlx->y < 0)
+        mlx->y = 1;
+    if (mlx->x > 1920)
+        mlx->x = 1920;
+    if (mlx->y < 1080)
+        mlx->y = 1080;
+    return (0);
+}
+
 int     rt_pars_r(t_mlx *mlx, char *line)
 {
     int i;
@@ -40,5 +53,5 @@ int     rt_pars_r(t_mlx *mlx, char *line)
     }
     else
         return (4);
-    return (0);
+    return (rt_pars_r_ii(mlx));
 }

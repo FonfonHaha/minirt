@@ -21,10 +21,38 @@ int     rt_get_lratio(t_rtlist *lum, char *line)
     if (!line[i])
         return (1);
     lum->ratio = ft_atof(line);
+    if (lum->ratio < 0.0 || lum->ratio > 1.0)
+        return (1);
     lum->ratio_ok = 1;
     return (0);
 }
 
+int     rt_get_lcolor(t_rtlist *lum, char *line)
+{
+    int i;
+    int r;
+    int g;
+    int b;
+    char **tab;
+
+    i = 0;
+    if (!line[i])
+        return (6);
+    if (!(tab = ft_split(line, ',')))
+        return (23);
+    if (!tab[0] || !tab[1] || !tab[2])
+        return (11);
+    r = ft_atoi(tab[0]);
+    g = ft_atoi(tab[1]);
+    b = ft_atoi(tab[2]);
+    ft_deltab(tab);
+    if ((lum->color = rt_color(r, g, b)) < 0)
+        return (22);
+    return (0);
+}
+
+
+/*
 int     rt_get_lcolor(t_rtlist *lum, char *line)
 {
     int     i;
@@ -50,6 +78,8 @@ int     rt_get_lcolor(t_rtlist *lum, char *line)
     lum->color = (rt_color(lum->r, lum->g, lum->b));
     return (0);
 }
+*/
+
 
 int     rt_get_lcoor(t_rtlist *lum, char *line)
 {
@@ -80,6 +110,7 @@ int     rt_get_lcoor(t_rtlist *lum, char *line)
 int     rt_pars_l_ii(t_rtlist *lum, char *line)
 {
     int i;
+    int ret;
 
     i = 0;
     while (line[i] && (line[i] < '0' || line [i] > '9') && line[i] != '-')
@@ -97,8 +128,8 @@ int     rt_pars_l_ii(t_rtlist *lum, char *line)
         i++;
     while (line[i] && (line[i] < '0' || line [i] > '9'))
         i++;
-    if (rt_get_lcolor(lum, line + i))
-        return (11);
+    if ((ret = rt_get_lcolor(lum, line + i)))
+        return (ret);
     return (0);
 }
 

@@ -15,17 +15,15 @@
 
 int     rt_get_cyheight(t_rtlist *obj, char *line)
 {
-    if (!line)
+    if (!line || (obj->h = ft_atoi(line)) < 0)
         return (19);
-    obj->h = ft_atoi(line);
     return (0);
 }
 
 int     rt_get_cydiam(t_rtlist *obj, char *line)
 {
-    if (!line)
+    if (!line || (obj->diam = ft_atoi(line)) < 0)
         return (18);
-    obj->diam = ft_atoi(line);
     return (0);
 }
 

@@ -25,7 +25,7 @@
 **	8 = erreur camera orientation
 **	9 = erreur camera fov
 **	10 = erreur coordonnee lumiere objet
-**	11 = erreur orientation lumiere objet
+**	11 = erreur couleur lumiere objet
 **	12 = erreur ratio lumiere objet
 **	13 = erreur malloc objet
 **	14 = erreur split objet
@@ -36,9 +36,28 @@
 **	19 = erreur hauteur objet
 **	20 = Resolution deja existante
 **	21 = Lumiere d'ambiance deja existante
+**	22 = couleur pas entre 0 et 255
+**	23 = erreur lumiere ambiante split
+**	24 = erreur fov camera range
+**	25 = erreur ratio lumiere ambiante range
+**	26 = camera orientation range
 */
 
-void	rt_error_init(char tab[25][50])
+void	rt_error_init_ii(char tab[30][50])
+{
+	ft_strcpy(tab[17], "Error on obj color");
+	ft_strcpy(tab[18], "Error on obj diameter");
+	ft_strcpy(tab[19], "Error on obj height");
+	ft_strcpy(tab[20], "Resolution already exist");
+	ft_strcpy(tab[21], "Ambiant light already exist");
+	ft_strcpy(tab[22], "Color must be between 0 and 255");
+	ft_strcpy(tab[23], "Error on ambiant light in split");
+	ft_strcpy(tab[24], "Camera FOV must be between 0 and 180");
+	ft_strcpy(tab[25], "Ambiant light ratio must be between 0.0 and 1.0");
+	ft_strcpy(tab[26], "Camera orientation must be between - 1.0 and 1.0");
+}
+
+void	rt_error_init(char tab[30][50])
 {
 	ft_strcpy(tab[1], "Error open");
 	ft_strcpy(tab[2], "GNL return -1");
@@ -50,22 +69,18 @@ void	rt_error_init(char tab[25][50])
 	ft_strcpy(tab[8], "Error on Cam orientation");
 	ft_strcpy(tab[9], "Error on Cam FOV");
 	ft_strcpy(tab[10], "Error on obj lum coordinates");
-	ft_strcpy(tab[11], "Error on obj lum orientation");
+	ft_strcpy(tab[11], "Error on obj lum color");
 	ft_strcpy(tab[12], "Error on obj lum ratio");
 	ft_strcpy(tab[13], "Error on obj malloc");
 	ft_strcpy(tab[14], "Error on obj in split");
 	ft_strcpy(tab[15], "Error on obj coordinates");
 	ft_strcpy(tab[16], "Error on obj vector");
-	ft_strcpy(tab[17], "Error on obj color");
-	ft_strcpy(tab[18], "Error on obj diameter");
-	ft_strcpy(tab[19], "Error on obj height");
-	ft_strcpy(tab[20], "Resolution already exist");
-	ft_strcpy(tab[21], "Ambiant light already exist");
+	rt_error_init_ii(tab);
 }
 
 void 	*rt_error(int k)
 {
-	char tab[25][50];
+	char tab[30][50];
 
 	rt_error_init(tab);
 	ft_printf("%s\n", tab[k]);
@@ -82,8 +97,8 @@ t_mlx	*rt_init(const char *str)
 	if (!(mlx = ft_calloc(1, sizeof(*mlx))))
 		return (NULL);
 	mlx->ptr = mlx_init();
-	mlx->win = mlx_new_window(mlx->ptr, 500, 500, "miniRT");
 	if ((ret = rt_pars(mlx, str)))
 		return (rt_error(ret));
+	mlx->win = mlx_new_window(mlx->ptr, mlx->x, mlx->y, "miniRT");
 	return (mlx);
 }

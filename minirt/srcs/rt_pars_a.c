@@ -13,6 +13,7 @@
 #include "minirt.h"
 #include "keys.h"
 
+/*
 int     rt_past_a_ii(t_mlx *mlx, char *line)
 {
     int i;
@@ -40,6 +41,32 @@ int     rt_past_a_ii(t_mlx *mlx, char *line)
     mlx->lum_a_ok = 1;
     return (0); 
 }
+*/
+
+int     rt_pars_a_ii(t_mlx *mlx, char *line)
+{
+    int i;
+    int r;
+    int g;
+    int b;
+    char **tab;
+
+    i = 0;
+    if (!line[i])
+        return (6);
+    if (!(tab = ft_split(line, ',')))
+        return (23);
+    if (!tab[0] || !tab[1] || !tab[2])
+        return (11);
+    r = ft_atoi(tab[0]);
+    g = ft_atoi(tab[1]);
+    b = ft_atoi(tab[2]);
+    ft_deltab(tab);
+    if ((mlx->lum_color = rt_color(r, g, b)) < 0)
+        return (22);
+    mlx->lum_a_ok = 1;
+    return (0);
+}
 
 int     rt_pars_a(t_mlx *mlx, char *line)
 {
@@ -53,13 +80,15 @@ int     rt_pars_a(t_mlx *mlx, char *line)
     if (line[i])
     {
         mlx->lum_a = ft_atof(line + i);
+        if (mlx->lum_a < 0.0 || mlx->lum_a > 1.0)
+            return (25);
         mlx->lum_a_ok = 1;
     }
     else
         return (5);
     while (line[i] && ((line[i] >= '0' && line[i] <= '9') || line[i] == '.'))
         i++;
-    while (line[i] && (line[i] < '0' || line[i] > '9'))
+    while (line[i] && (line[i] < '0' || line[i] > '9') && line[i] != '-')
         i++;
-    return (rt_past_a_ii(mlx, line + i));
+    return (rt_pars_a_ii(mlx, line + i));
 }
