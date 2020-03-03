@@ -125,7 +125,12 @@ int     rt_pars_c(t_mlx *mlx, char *line)
 
 */
 
-
+int     rt_pars_c_ii(t_rtlist *cam, char **tab)
+{
+    (void)tab;
+    (void)cam;
+    return (0);
+}
 
 int     rt_pars_c(t_mlx *mlx, char *line)
 {
@@ -143,11 +148,10 @@ int     rt_pars_c(t_mlx *mlx, char *line)
         mlx->cam = cam;
     else
         last->next = cam;
-    mlx->cfov_ok = 1;
-    return (0);
     if (!(tab = ft_split(line, ' ')))
         return (14);
-    //ret = rt_pars_c_ii(cam, tab);
+    ret = rt_pars_c_ii(cam, tab);
     tab = ft_deltab(tab);
+    mlx->cfov_ok = 1;
     return (ret);
 }
