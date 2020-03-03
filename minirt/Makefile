@@ -6,7 +6,7 @@
 #    By: pcoureau <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/02/27 19:31:45 by pcoureau          #+#    #+#              #
-#    Updated: 2020/02/27 20:18:39 by pcoureau         ###   ########.fr        #
+#    Updated: 2020/03/03 15:53:05 by pcoureau         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -50,6 +50,9 @@ $(FT_LIB):
 	make -C $(FT)
 $(NAME): $(OBJ)
 	$(CC) $(OBJ) $(FT_LNK) $(MLX_LNK) -lm -o $(NAME)
+
+sani:
+	$(CC) $(OBJ) $(FT_LNK) $(MLX_LNK) -g3 -fsanitize=address -lm -o $(NAME)
 clean:
 	rm -rf $(OBJDIR)
 	make -C $(FT) clean
