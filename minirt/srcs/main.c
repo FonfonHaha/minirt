@@ -67,11 +67,19 @@ void	checklum(t_rtlist *lst)
 	printf("lum\n%f %f %f\nint: %f rgb: %x\n", lst->x, lst->y, lst->z, lst->ratio, lst->color);
 	checklum(lst->next);
 }
+void	checkcam(t_rtlist *lst)
+{
+	if (!lst)
+		return ;
+	printf("cam fov\n%d\n",lst->fov);
+	checkcam(lst->next);
+}
 void	check(t_mlx *mlx)
 {
 	printf("%p\n%p\na %f r %d rgb %x x %d y %d\ncam:%f %f %f\n%f %f %f\n%d\n", mlx->ptr, mlx->win, mlx->lum_a, mlx->x_ok, mlx->lum_color, mlx->x, mlx->y, mlx->cx, mlx->cy, mlx->cz, mlx->corix, mlx->coriy, mlx->coriz, mlx->cfov);
 	checkobj(mlx->obj);
 	checklum(mlx->lum);
+	checkcam(mlx->cam);
 }
 int		main(int ac, char **av)
 {

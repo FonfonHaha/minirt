@@ -125,10 +125,27 @@ int     rt_pars_c(t_mlx *mlx, char *line)
 
 */
 
+int     rt_get_fov(t_rtlist *cam, char *line)
+{
+    (void)cam;
+    printf("---------------TEST\n\n%s\n\n------------------\n", line);
+    cam->fov = ft_atoi(line);
+    if (cam->fov < 0 || cam->fov > 180)
+        return (1);
+    return (0);
+}
+
 int     rt_pars_c_ii(t_rtlist *cam, char **tab)
 {
-    (void)tab;
-    (void)cam;
+    int ret;
+
+    ret = 0;
+    if ((ret = rt_get_objcoor(cam, tab[1])))
+        return (7);
+    if ((ret = rt_get_objvector(cam, tab[2])))
+        return (8);
+    if ((ret = rt_get_fov(cam, tab[3])))
+        return (9);
     return (0);
 }
 

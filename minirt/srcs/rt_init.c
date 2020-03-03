@@ -69,7 +69,7 @@ void	rt_error_init(char tab[30][100])
 	ft_strcpy(tab[6], "Error on ambiant light's color");
 	ft_strcpy(tab[7], "Error on Cam coordinates");
 	ft_strcpy(tab[8], "Error on Cam orientation (all vector at 0 or not in range [-1.0, 1.0])");
-	ft_strcpy(tab[9], "Error on Cam FOV");
+	ft_strcpy(tab[9], "Error on Cam FOV (missing or must be between 0 and 180)");
 	ft_strcpy(tab[10], "Error on obj lum coordinates");
 	ft_strcpy(tab[11], "Error on obj lum color");
 	ft_strcpy(tab[12], "Error on obj lum ratio");
