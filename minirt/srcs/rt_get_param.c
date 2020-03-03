@@ -36,9 +36,15 @@ int     rt_get_objcolor(t_rtlist *obj, char *line)
     return (0);
 }
 
-int     rt_vectorverif(float x)
+int     rt_vectorverif(float x, float y, float z)
 {
     if (x < -1.0 || x > 1.0)
+        return (1);
+    if (y < -1.0 || y > 1.0)
+        return (1);
+    if (z < -1.0 || z > 1.0)
+        return (1);
+    if (x == 0 && y == 0 && z == 0)
         return (1);
     return (0);
 }
@@ -60,7 +66,7 @@ int     rt_get_objvector(t_rtlist *obj, char *line)
     obj->vy = ft_atof(tab[1]);
     obj->vz = ft_atof(tab[2]);
     ft_deltab(tab);
-    if (rt_vectorverif(obj->vx) || rt_vectorverif(obj->vy) || rt_vectorverif(obj->vz))
+    if (rt_vectorverif(obj->vx, obj->vy, obj->vz))
         return (16);
     return (0);
 }

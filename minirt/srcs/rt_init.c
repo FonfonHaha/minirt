@@ -44,7 +44,7 @@
 **	27 = lumiere ambiante missing
 */
 
-void	rt_error_init_ii(char tab[30][50])
+void	rt_error_init_ii(char tab[30][100])
 {
 	ft_strcpy(tab[17], "Error on obj color");
 	ft_strcpy(tab[18], "Error on obj diameter");
@@ -59,7 +59,7 @@ void	rt_error_init_ii(char tab[30][50])
 	ft_strcpy(tab[27], "Resolution or Ambiant light is missing");
 }
 
-void	rt_error_init(char tab[30][50])
+void	rt_error_init(char tab[30][100])
 {
 	ft_strcpy(tab[1], "Error open");
 	ft_strcpy(tab[2], "GNL return -1");
@@ -76,13 +76,13 @@ void	rt_error_init(char tab[30][50])
 	ft_strcpy(tab[13], "Error on obj malloc");
 	ft_strcpy(tab[14], "Error on obj in split");
 	ft_strcpy(tab[15], "Error on obj coordinates");
-	ft_strcpy(tab[16], "Error on obj vector");
+	ft_strcpy(tab[16], "Error on obj vector (all vector at 0 or not in range [-1.0, 1.0])");
 	rt_error_init_ii(tab);
 }
 
 void 	*rt_error(int k)
 {
-	char tab[30][50];
+	char tab[30][100];
 
 	rt_error_init(tab);
 	ft_printf("%s\n", tab[k]);
