@@ -54,6 +54,7 @@ typedef struct	s_rtlist
 	int				ratio_ok;
 	float				diam;
     float             h;
+	int					fov;
 	struct s_rtlist	*next;
 }				t_rtlist;
 
