@@ -79,6 +79,7 @@ typedef struct	s_mlx
 	int		cfov_ok;
 	t_rtlist	*obj;
 	t_rtlist	*lum;
+	t_rtlist	*cam;
 }				t_mlx;
 int     rt_color(int r, int g, int b);
 int     rt_get_objcoor(t_rtlist *obj, char *line);
