@@ -56,7 +56,7 @@ void	rt_error_init_ii(char tab[30][100])
 	ft_strcpy(tab[24], "Camera FOV must be between 0 and 180");
 	ft_strcpy(tab[25], "Ambiant light ratio must be between 0.0 and 1.0");
 	ft_strcpy(tab[26], "Camera orientation must be between - 1.0 and 1.0");
-	ft_strcpy(tab[27], "Resolution or Ambiant light is missing");
+	ft_strcpy(tab[27], "Resolution or Camera or Ambiant light is missing");
 }
 
 void	rt_error_init(char tab[30][100])

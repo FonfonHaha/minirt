@@ -26,6 +26,7 @@
 ** 4 cylindre
 ** 5 triangle
 ** 6 lumiere
+** 7 camera
 */
 
 typedef struct	s_rtlist

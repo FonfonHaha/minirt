@@ -12,7 +12,7 @@
 
 #include "minirt.h"
 #include "keys.h"
-
+/*
 int     rt_get_cfov(t_mlx *mlx, char *line)
 {
     int i;
@@ -121,4 +121,33 @@ int     rt_pars_c(t_mlx *mlx, char *line)
         return (9);
     printf("--------------TEST----------\n\nx %f\ny %f\nz %f\nvx %f\nvy %f\nvz %f\nfov %d\n\n\n---------------TEST-------------\n", mlx->cx, mlx->cy, mlx->cz, mlx->corix, mlx->coriy, mlx->coriz, mlx->cfov);
     return (0);
+}
+
+*/
+
+
+
+int     rt_pars_c(t_mlx *mlx, char *line)
+{
+    int         ret;
+    char        **tab;
+    t_rtlist    *cam;
+    t_rtlist    *last;
+
+    last = rt_lstlast(mlx->cam);
+    if (!(cam = malloc(sizeof(t_rtlist))))
+        return(13);
+    cam->next = NULL;
+    cam->type = 7;
+    if (!last)
+        mlx->cam = cam;
+    else
+        last->next = cam;
+    mlx->cfov_ok = 1;
+    return (0);
+    if (!(tab = ft_split(line, ' ')))
+        return (14);
+    //ret = rt_pars_c_ii(cam, tab);
+    tab = ft_deltab(tab);
+    return (ret);
 }
