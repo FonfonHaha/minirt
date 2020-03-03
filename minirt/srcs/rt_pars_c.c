@@ -63,6 +63,8 @@ int     rt_get_cori(t_mlx *mlx, char *line)
     if (!line[i])
         return (1);
     mlx->coriz = ft_atof(line + i);
+    if (mlx->corix == 0 && mlx->coriy == 0 && mlx->coriz == 0)
+        return (1);
     mlx->cori_ok = 1;
     return (rt_get_cori_ii(mlx));
 }
