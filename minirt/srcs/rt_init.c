@@ -41,6 +41,7 @@
 **	24 = erreur fov camera range
 **	25 = erreur ratio lumiere ambiante range
 **	26 = camera orientation range
+**	27 = lumiere ambiante missing
 */
 
 void	rt_error_init_ii(char tab[30][50])
@@ -55,6 +56,7 @@ void	rt_error_init_ii(char tab[30][50])
 	ft_strcpy(tab[24], "Camera FOV must be between 0 and 180");
 	ft_strcpy(tab[25], "Ambiant light ratio must be between 0.0 and 1.0");
 	ft_strcpy(tab[26], "Camera orientation must be between - 1.0 and 1.0");
+	ft_strcpy(tab[27], "Resolution or Ambiant light is missing");
 }
 
 void	rt_error_init(char tab[30][50])
@@ -99,6 +101,8 @@ t_mlx	*rt_init(const char *str)
 	mlx->ptr = mlx_init();
 	if ((ret = rt_pars(mlx, str)))
 		return (rt_error(ret));
+	if (mlx->lum_a_ok == 0 || mlx->y_ok == 0 || mlx->cfov_ok == 0)
+		return (rt_error(27));
 	mlx->win = mlx_new_window(mlx->ptr, mlx->x, mlx->y, "miniRT");
 	return (mlx);
 }
