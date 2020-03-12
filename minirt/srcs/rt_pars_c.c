@@ -128,7 +128,6 @@ int     rt_pars_c(t_mlx *mlx, char *line)
 int     rt_get_fov(t_rtlist *cam, char *line)
 {
     (void)cam;
-    printf("---------------TEST\n\n%s\n\n------------------\n", line);
     cam->fov = ft_atoi(line);
     if (cam->fov < 0 || cam->fov > 180)
         return (1);

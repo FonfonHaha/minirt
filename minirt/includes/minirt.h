@@ -17,6 +17,7 @@
 #include <stdlib.h>
 #include <fcntl.h>
 #include "mlx.h"
+#define MAX_DIST 1000.0
 
 /*
 ** type des objets:
@@ -101,6 +102,8 @@ int     rt_pars_sp(t_mlx *mlx, char *line);
 int     rt_pars_sq(t_mlx *mlx, char *line);
 int     rt_pars_tr(t_mlx *mlx, char *line);
 int		rt_pars(t_mlx *mlx, const char *str);
+int     rt_render(t_mlx *mlx);
+int		rt_putpix(int x, int y, t_mlx *mlx, t_rtlist *cam);
 t_mlx			*rt_init(const char *str);
 int				rt_hook_keydown(int key, t_mlx *mlx);
 #endif

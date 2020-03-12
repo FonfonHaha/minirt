@@ -71,7 +71,7 @@ void	checkcam(t_rtlist *lst)
 {
 	if (!lst)
 		return ;
-	printf("cam fov\n%d\n",lst->fov);
+	printf("cam fov\n%d\ncoor\n%f %f %f\nvector\n%f %f %f",lst->fov, lst->x, lst->y, lst->z, lst->vx, lst->vy, lst->vz);
 	checkcam(lst->next);
 }
 void	check(t_mlx *mlx)
@@ -95,6 +95,8 @@ int		main(int ac, char **av)
 			return (0);
 		}
 		check(mlx);
+		if (rt_render(mlx))
+			return (-1);
 		mlx_key_hook(mlx->win, rt_hook_keydown, mlx->ptr);
 		mlx_loop(mlx->ptr);
 	}
