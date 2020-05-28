@@ -15,14 +15,12 @@
 
 int		rt_pars(t_mlx *mlx, const char *str)
 {
-	int		i;
 	int		fd;
 	int		ret;
 	int		ret_funct;
 	char	*line;
 	t_funct	funct;
 
-	i = 0;
 	fd = open(str, O_RDONLY);
 	if (fd == -1)
 		return (1);
@@ -31,13 +29,20 @@ int		rt_pars(t_mlx *mlx, const char *str)
 		if(!(funct = rt_get_funct(line)))
 		{
 			free(line);
+			close(fd);
 			return(3);
 		}
 		if ((ret_funct = funct(mlx, line)))
+		{
 			return (ret_funct);
+			close(fd);
+		}
 		free(line);
 	}
 	if (ret == -1)
+	{
 		return (2);
+		close(fd);
+	}
 	return (0);
 }

@@ -19,7 +19,6 @@
 #include <string.h>
 #include "minirt.h"
 #include "keys.h"
-#include <mlx.h>
 #include "minirt.h"
 #include "libft.h"
 

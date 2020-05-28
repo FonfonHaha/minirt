@@ -73,8 +73,8 @@ int		ft_strchrbn(const char *s)
 	}
 	return (-1);
 }
-
-char	*ft_strjoin(char const *s1, char const *s2)
+/*
+char	*ft_strjoingnl(char const *s1, char const *s2)
 {
 	int		i;
 	int		j;
@@ -102,3 +102,4 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	p[i] = '\0';
 	return (p);
 }
+*/

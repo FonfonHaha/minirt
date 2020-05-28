@@ -21,7 +21,7 @@ int     rt_pars_r_ii(t_mlx *mlx)
         mlx->y = 1;
     if (mlx->x > 1920)
         mlx->x = 1920;
-    if (mlx->y < 1080)
+    if (mlx->y > 1080)
         mlx->y = 1080;
     return (0);
 }

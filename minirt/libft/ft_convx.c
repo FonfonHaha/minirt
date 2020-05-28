@@ -102,7 +102,7 @@ void	*ft_convx(va_list av, t_ftprintf *mas)
 		return (NULL);
 	len = ft_strlen(tampostr);
 	if (mas->dot_activ)
-		if ((tampostr = ft_dotx(mas, len, tampostr, xnum)) < 0)
+		if ((tampostr = ft_dotx(mas, len, tampostr, xnum)) == 0)
 			return (NULL);
 	len = ft_strlen(tampostr);
 	if (mas->star < 0)

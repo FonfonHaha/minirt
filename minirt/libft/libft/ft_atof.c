@@ -23,7 +23,9 @@ float   ft_atof_ii(const char *str)
     n = 0;
     puis = 10;
     while (str[i] == '.')
+	{
         i++;
+	}
 	while (ft_isdigit(str[i]))
 	{
 		n = (n * 10) + (str[i] - 48);

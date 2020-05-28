@@ -16,7 +16,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <fcntl.h>
-#include "mlx.h"
+#include "../minilibx-linux/mlx.h"
 
 /*
 ** type des objets:
@@ -56,6 +56,13 @@ typedef struct	s_rtlist
 	struct s_rtlist	*next;
 }				t_rtlist;
 
+typedef struct	s_vect
+{
+	int x;
+	int y;
+	int z;
+}	t_vect;
+
 typedef struct	s_mlx
 {
 	void	*ptr;
@@ -80,6 +87,7 @@ typedef struct	s_mlx
 	t_rtlist	*obj;
 	t_rtlist	*lum;
 }				t_mlx;
+
 int     rt_color(int r, int g, int b);
 int     rt_get_objcoor(t_rtlist *obj, char *line);
 typedef int			(*t_funct)(t_mlx *mlx, char *line);
@@ -100,4 +108,5 @@ int     rt_pars_tr(t_mlx *mlx, char *line);
 int		rt_pars(t_mlx *mlx, const char *str);
 t_mlx			*rt_init(const char *str);
 int				rt_hook_keydown(int key, t_mlx *mlx);
+int    rt_putpixel(t_mlx *mlx);
 #endif
