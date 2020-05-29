@@ -58,9 +58,9 @@ typedef struct	s_rtlist
 
 typedef struct	s_vect
 {
-	int x;
-	int y;
-	int z;
+	float x;
+	float y;
+	float z;
 }	t_vect;
 
 typedef struct	s_mlx
