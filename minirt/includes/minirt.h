@@ -63,6 +63,17 @@ typedef struct	s_vect
 	float z;
 }	t_vect;
 
+typedef struct s_tout
+{
+	t_rtlist *cam;
+	t_rtlist *allcam;
+	float	a;//alpha le plus petit
+	float	c;//couleur à afficher
+	float	ax;//coordonnées du alpha
+	float	ay;
+	float	az;
+}	t_tout;
+
 typedef struct	s_mlx
 {
 	void	*ptr;

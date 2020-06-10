@@ -92,6 +92,7 @@ void 	*rt_error(int k)
 t_mlx	*rt_init(const char *str)
 {
 	t_mlx	*mlx;
+	t_tout	t;
 	int ret;
 
 	if (!(mlx = ft_calloc(1, sizeof(*mlx))))

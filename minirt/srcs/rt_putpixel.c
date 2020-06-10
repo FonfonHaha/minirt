@@ -25,8 +25,8 @@ void    *rt_calculequationrayon(t_mlx *mlx, t_vect *vect, int x, int y)
         return (NULL);
     v->x = (x - mlx->x/2);
     v->y = (y - mlx->y/2);
-    v->z = mlx->x/(2*tan(70/2));//IL Y A UN PROBLEME AVEC LE CALCUL DE LA FOCAL
-    //v->z = 1000;
+    //v->z = mlx->x/(2*tan(70/2));//IL Y A UN PROBLEME AVEC LE CALCUL DE LA FOCAL
+    v->z = 500;
     return (v);
 }
 
@@ -88,7 +88,7 @@ void    getcolor(int *colorp, t_rtlist *listelum)
         getcolor(int *colorp, t_rtlist *listelum)
 }*/
 
-void    rt_putpixel_ii(t_mlx *mlx, t_rtlist *listeobjets, t_vect *v, int x, int y)
+void    rt_putpixel_ii(t_mlx *mlx, t_tout *t, t_vect *v, int x, int y)
 {
     float alpha;
     int color;
@@ -97,7 +97,7 @@ void    rt_putpixel_ii(t_mlx *mlx, t_rtlist *listeobjets, t_vect *v, int x, int 
     color = 0;
     colorp = &color;
     alpha = -1;
-    alpha = findobject(listeobjets, v, colorp);
+    alpha = findobject(mlx->obj, v, colorp);
     //getcolor(colorp, mlx->lum);
 	if (alpha >= 0)
         mlx_pixel_put(mlx->ptr, mlx->win, x, y, color);
@@ -105,7 +105,7 @@ void    rt_putpixel_ii(t_mlx *mlx, t_rtlist *listeobjets, t_vect *v, int x, int 
         mlx_pixel_put(mlx->ptr, mlx->win, x, y, 0x000000);
 }
 
-int    rt_putpixel(t_mlx *mlx)
+int    rt_putpixel(t_mlx *mlx, t_tout *t)
 {
     int x;
     int y;
@@ -125,7 +125,7 @@ int    rt_putpixel(t_mlx *mlx)
                 return (1);
             //ft_printf("---------VECTOR\nvx = %d\nvy = %d\nvz = %d\n---------VECTOR END\n", vect->x, vect->y, vect->z);
             //mlx_pixel_put(mlx->ptr, mlx->win, x, y, 0xFFFFFF);
-            rt_putpixel_ii(mlx, listeobjets, vect, x, y);
+            rt_putpixel_ii(mlx, t, vect, x, y);
             x++;
         }
         y++;
