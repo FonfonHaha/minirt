@@ -54,6 +54,6 @@ int     rt_color(int r, int g, int b)
     color = 0;
     if (rt_notrange(r) || rt_notrange(g) || rt_notrange(b))
         return (-1);
-    color = color + (r * 65536 + g * 256 + b);
+    color = r * 65536 + g * 256 + b;
     return (color);
 }

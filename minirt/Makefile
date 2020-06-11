@@ -29,7 +29,9 @@ SRC		= main.c \
 		  rt_pars_tr.c \
 		  rt_pars.c \
 		  rt_lstlast.c \
-		  rt_putpixel.c
+		  rt_putpixel.c \
+		  rt_c_sphere.c \
+		  rt_c_square.c
 
 OBJ		= $(addprefix $(OBJDIR),$(SRC:.c=.o))
 CC		= gcc

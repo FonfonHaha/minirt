@@ -22,30 +22,6 @@ void     rt_equray(t_mlx *mlx)
     //APPLIQUER LES ROTATIONS
 }
 
-float   c_sphere(t_rtlist *obj, t_mlx *mlx)
-{
-    float xr;//le rayon lancé depuis xr, yr, zr
-    float yr;
-    float zr;
-    float a;//ce qu'on utilise dans le calcul
-    float b;
-    float c;
-    float alpha;
-    float alphaii;
-
-    xr = mlx->camu->x;
-    yr = mlx->camu->y;
-    zr = mlx->camu->z;
-    a = ((mlx->vx * mlx->vx) + (mlx->vy * mlx->vy) + (mlx->vz * mlx->vz));
-    b = 2 * (mlx->vx * (xr - obj->x) + mlx->vy * (yr - obj->y) + mlx->vz * (zr - obj->z));
-    c = ((xr - obj->x) * (xr - obj->x) + (yr - obj->y) * (yr - obj->y) + (zr - obj->z) * (zr - obj->z) - obj->diam * obj->diam);
-    if (((b*b) - (4*a*c)) < 0)
-        return (-1);
-    alpha = (-b + sqrtf((b*b) - (4*a*c))) / 2 * a;
-    alphaii =  (-b - sqrtf((b*b) - (4*a*c))) / 2 * a;
-    return (alpha < alphaii ? alpha : alphaii);
-}
-
 float   findobject(t_mlx *mlx, t_rtlist *obj)
 {
     float   retal;

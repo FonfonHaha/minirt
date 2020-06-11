@@ -152,4 +152,6 @@ int    rt_putpixel(t_mlx *mlx);
 void    getcolorobj(t_mlx *mlx, t_rtlist *obj);
 void    getcolorlum(t_mlx *mlx, t_rtlist *lum);
 void    getcolorf(t_mlx *mlx);
+float   c_sphere(t_rtlist *obj, t_mlx *mlx);
+float   c_square(t_rtlist *obj, t_mlx *mlx);
 #endif
