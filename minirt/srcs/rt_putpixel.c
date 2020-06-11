@@ -46,33 +46,6 @@ float   c_sphere(t_rtlist *obj, t_mlx *mlx)
     return (alpha < alphaii ? alpha : alphaii);
 }
 
-void    getcolorobj(t_mlx *mlx, t_rtlist *obj)
-{
-    mlx->or = obj->r;
-    mlx->og = obj->g;
-    mlx->ob = obj->b;
-}
-
-void    getcolorlum(t_mlx *mlx, t_rtlist *lum)
-{
-    mlx->r = lum->r > mlx->r ? lum->r : mlx->r;
-    mlx->g = lum->g > mlx->g ? lum->g : mlx->g;
-    mlx->b = lum->b > mlx->b ? lum->b : mlx->b;
-}
-
-void    getcolorf(t_mlx *mlx)
-{
-    if (mlx->al < 0)
-        mlx->colorf = 0;
-    else
-    {
-        mlx->r = (mlx->or * mlx->r) / 255;
-        mlx->g = (mlx->og * mlx->g) / 255;
-        mlx->b = (mlx->ob * mlx->b) / 255;
-        mlx->colorf = rt_color(mlx->r, mlx->g, mlx->b);
-    }
-}
-
 float   findobject(t_mlx *mlx, t_rtlist *obj)
 {
     float   retal;

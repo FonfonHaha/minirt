@@ -149,4 +149,7 @@ int		rt_pars(t_mlx *mlx, const char *str);
 t_mlx			*rt_init(const char *str);
 int				rt_hook_keydown(int key, t_mlx *mlx);
 int    rt_putpixel(t_mlx *mlx);
+void    getcolorobj(t_mlx *mlx, t_rtlist *obj);
+void    getcolorlum(t_mlx *mlx, t_rtlist *lum);
+void    getcolorf(t_mlx *mlx);
 #endif
