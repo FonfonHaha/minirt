@@ -14,23 +14,15 @@
 #include "keys.h"
 #include <math.h>
 
-
-void    *rt_calculequationrayon(t_mlx *mlx, t_vect *vect, int x, int y)
+void     rt_equray(t_mlx *mlx)
 {
-    t_vect *v;
-
-    if (vect)
-        free(vect);
-    if (!(v = malloc(sizeof(t_vect))))
-        return (NULL);
-    v->x = (x - mlx->x/2);
-    v->y = (y - mlx->y/2);
-    //v->z = mlx->x/(2*tan(70/2));//IL Y A UN PROBLEME AVEC LE CALCUL DE LA FOCAL
-    v->z = 500;
-    return (v);
+    mlx->vx = (mlx->px - mlx->x/2);
+    mlx->vy = (mlx->py - mlx->y/2);
+    mlx->vz = mlx->camu->z3 * (mlx->x > mlx->y ? mlx->x : mlx->y) / 180;
+    //APPLIQUER LES ROTATIONS
 }
 
-float calculsphere(t_rtlist *l, t_vect *v)
+float   c_sphere(t_rtlist *obj, t_mlx *mlx)
 {
     float xr;//le rayon lancé depuis xr, yr, zr
     float yr;
@@ -40,97 +32,97 @@ float calculsphere(t_rtlist *l, t_vect *v)
     float c;
     float alpha;
     float alphaii;
-    //dirigé par v
-    xr = 0;
-    yr = 0;
-    zr = 0;
-    a = ((v->x * v->x) + (v->y * v->y) + (v->z * v->z));
-    b = 2 * (v->x * (xr - l->x) + v->y * (yr - l->y) + v->z * (zr - l->z));
-    c = ((xr - l->x) * (xr - l->x) + (yr - l->y) * (yr - l->y) + (zr - l->z) * (zr - l->z) - l->diam * l->diam);
+
+    xr = mlx->camu->x;
+    yr = mlx->camu->y;
+    zr = mlx->camu->z;
+    a = ((mlx->vx * mlx->vx) + (mlx->vy * mlx->vy) + (mlx->vz * mlx->vz));
+    b = 2 * (mlx->vx * (xr - obj->x) + mlx->vy * (yr - obj->y) + mlx->vz * (zr - obj->z));
+    c = ((xr - obj->x) * (xr - obj->x) + (yr - obj->y) * (yr - obj->y) + (zr - obj->z) * (zr - obj->z) - obj->diam * obj->diam);
     if (((b*b) - (4*a*c)) < 0)
         return (-1);
     alpha = (-b + sqrtf((b*b) - (4*a*c))) / 2 * a;
     alphaii =  (-b - sqrtf((b*b) - (4*a*c))) / 2 * a;
-    if (alpha < alphaii)
-        return (alpha);
-    else
-        return (alphaii);
+    return (alpha < alphaii ? alpha : alphaii);
 }
 
-float   findobject(t_rtlist *listeobjets, t_vect *v, int *colorp)
+void    getcolorobj(t_mlx *mlx, t_rtlist *obj)
 {
-    float   retalpha;
-    float   retalphaii;
+    mlx->or = obj->r;
+    mlx->og = obj->g;
+    mlx->ob = obj->b;
+}
 
-    if (listeobjets->next)
-        retalpha = findobject(listeobjets->next, v, colorp);
+void    getcolorlum(t_mlx *mlx, t_rtlist *lum)
+{
+    mlx->r = lum->r > mlx->r ? lum->r : mlx->r;
+    mlx->g = lum->g > mlx->g ? lum->g : mlx->g;
+    mlx->b = lum->b > mlx->b ? lum->b : mlx->b;
+}
+
+void    getcolorf(t_mlx *mlx)
+{
+    if (mlx->al < 0)
+        mlx->colorf = 0;
     else
-        retalpha = -1;
-    if (listeobjets->type == 1)
     {
-        if ((retalphaii = calculsphere(listeobjets, v)) < 0)
-            return (retalpha);
+        mlx->r = (mlx->or * mlx->r) / 255;
+        mlx->g = (mlx->og * mlx->g) / 255;
+        mlx->b = (mlx->ob * mlx->b) / 255;
+        mlx->colorf = rt_color(mlx->r, mlx->g, mlx->b);
+    }
+}
+
+float   findobject(t_mlx *mlx, t_rtlist *obj)
+{
+    float   retal;
+    float   retalii;
+
+    if (obj->next)
+        retal = findobject(mlx, obj->next);
+    else
+        retal = -1;
+    if (obj->type == 1)
+    {
+        if ((retalii = c_sphere(obj, mlx)) < 0)
+            return (retal);
     }
     else
-        return (retalpha);
-    if (retalphaii >= 0 && (retalpha > retalphaii || retalpha == -1))
+        return (retal);
+    if (retalii >= 0 && (retal > retalii || retal == -1))
     {
-        *colorp = listeobjets->color;
-        return (retalphaii);
+        getcolorobj(mlx, obj);
+        return (retalii);
     }
     else
-        return (retalpha);
-}
-/*
-void    getcolor(int *colorp, t_rtlist *listelum)
-{
-    if (listelum->next)
-        getcolor(int *colorp, t_rtlist *listelum)
-}*/
-
-void    rt_putpixel_ii(t_mlx *mlx, t_tout *t, t_vect *v, int x, int y)
-{
-    float alpha;
-    int color;
-    int *colorp;
-
-    color = 0;
-    colorp = &color;
-    alpha = -1;
-    alpha = findobject(mlx->obj, v, colorp);
-    //getcolor(colorp, mlx->lum);
-	if (alpha >= 0)
-        mlx_pixel_put(mlx->ptr, mlx->win, x, y, color);
-    else
-        mlx_pixel_put(mlx->ptr, mlx->win, x, y, 0x000000);
+        return (retal);
 }
 
-int    rt_putpixel(t_mlx *mlx, t_tout *t)
+void    rt_putpixel_ii(t_mlx *mlx)
 {
-    int x;
-    int y;
-    t_vect *vect;
-    t_rtlist *listeobjets;
+    mlx->colorf = 0;
+    mlx->al = -1;
+    mlx->al = findobject(mlx, mlx->obj);
+    getcolorf(mlx);
+    mlx_pixel_put(mlx->ptr, mlx->win, mlx->px, mlx->py, mlx->colorf);
+}
 
-    y = 0;
-    vect = NULL;
-    //sphere = sp 0,0,20 20 255,0,0
-    listeobjets = mlx->obj;
-    while (y < mlx->y)
+int     rt_putpixel(t_mlx *mlx)
+{
+    mlx->py = 0;
+    while (mlx->py < mlx->y)
     {
-        x = 0;
-        while (x < mlx->x)
+        mlx->px = 0;
+        while (mlx->px < mlx->x)
         {
-            if (!(vect = rt_calculequationrayon(mlx, vect, x, y)))
-                return (1);
-            //ft_printf("---------VECTOR\nvx = %d\nvy = %d\nvz = %d\n---------VECTOR END\n", vect->x, vect->y, vect->z);
-            //mlx_pixel_put(mlx->ptr, mlx->win, x, y, 0xFFFFFF);
-            rt_putpixel_ii(mlx, t, vect, x, y);
-            x++;
+            mlx->r = mlx->lumr;
+            mlx->g = mlx->lumg;
+            mlx->b = mlx->lumb;
+            rt_equray(mlx);
+            rt_putpixel_ii(mlx);
+            mlx->px++;
         }
-        y++;
+        mlx->py++;
     }
-    if (vect)
-        free(vect);
     return (0);
 }

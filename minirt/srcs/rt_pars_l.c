@@ -42,9 +42,9 @@ int     rt_get_lcolor(t_rtlist *lum, char *line)
         return (23);
     if (!tab[0] || !tab[1] || !tab[2])
         return (11);
-    r = ft_atoi(tab[0]);
-    g = ft_atoi(tab[1]);
-    b = ft_atoi(tab[2]);
+    r = ft_atoi(tab[0]) * lum->ratio;
+    g = ft_atoi(tab[1]) * lum->ratio;
+    b = ft_atoi(tab[2]) * lum->ratio;
     ft_deltab(tab);
     if ((lum->color = rt_color(r, g, b)) < 0)
         return (22);

@@ -6,7 +6,7 @@
 /*   By: pcoureau <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/25 18:02:37 by pcoureau          #+#    #+#             */
-/*   Updated: 2020/02/27 20:19:22 by pcoureau         ###   ########.fr       */
+/*   Updated: 2020/06/11 11:34:05 by pcoureau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <fcntl.h>
-#include "../minilibx-linux/mlx.h"
+#include "../minilibx-mac/mlx.h"
 
 /*
 ** type des objets:
@@ -26,20 +26,21 @@
 ** 4 cylindre
 ** 5 triangle
 ** 6 lumiere
+** 7 camera
 */
 
 typedef struct	s_rtlist
 {
 	int				type;
 	float				x;
-	float				x2;
+	float				x2;// les 2 pour la camera cest lorientation
 	float				x3;
 	float				y;
 	float				y2;
 	float				y3;
 	float				z;
 	float				z2;
-	float				z3;
+	float				z3;//z3 pour la camera = fov
 	int				coor_ok;
 	int				r;
 	int				g;
@@ -85,6 +86,9 @@ typedef struct	s_mlx
 	float		lum_a;
 	int		lum_a_ok;
 	int		lum_color;
+	int		lumr;
+	int		lumg;
+	int		lumb;
 	float	cx;
 	float	cy;
 	float	cz;
@@ -97,7 +101,32 @@ typedef struct	s_mlx
 	int		cfov_ok;
 	t_rtlist	*obj;
 	t_rtlist	*lum;
+	t_rtlist	*cam;
+	t_rtlist	*camu;
+	float		vx;
+	float		vy;
+	float		vz;
+	int			r;
+	int			g;
+	int			b;
+	int			or;
+	int			og;
+	int			ob;
+	int			colorf;
+	float		al;
+	float		alx;
+	float		aly;
+	float		alz;
+	int			px;
+	int			py;
 }				t_mlx;
+/*
+** camera utilisee OK
+** vecteurs pixel
+** couleur finale pixel
+** alpha
+** coordonnesalpha
+*/
 
 int     rt_color(int r, int g, int b);
 int     rt_get_objcoor(t_rtlist *obj, char *line);

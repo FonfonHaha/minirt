@@ -35,16 +35,19 @@ OBJ		= $(addprefix $(OBJDIR),$(SRC:.c=.o))
 CC		= gcc
 CFLAGS	= -Wall -Wextra -Werror -g
 FT		= ./libft/
+FT_MLX 	= ./minilibx-linux/
 FT_LIB	= $(addprefix $(FT),libft.a)
 FT_INC	= -I ./libft/libft
 FT_LNK	= -L ./libft -l ft -l pthread
-MLX_LNK	= -I /usr/local/include -L /usr/local/lib -lmlx -framework OpenGL -framework AppKit
+MLX_LNK	= -I ./minilibx-linux -L ./minilibx-linux -lmlx -lXext -lX11 -lm -lbsd
 SRCDIR	= ./srcs/
 INCDIR	= ./includes/
 OBJDIR	= ./obj/
-all: obj $(FT_LIB) $(NAME)
+all: obj $(FT_LIB) $(FT_MLX) $(NAME)
 obj:
 	mkdir -p $(OBJDIR)
+$(COMP_MLX):
+	@(cd $(FT_MLX) && $(MAKE) && cd ..)
 $(OBJDIR)%.o:$(SRCDIR)%.c
 	$(CC) $(CFLAGS) $(FT_INC) -I $(INCDIR) -o $@ -c $<
 $(FT_LIB):
@@ -54,7 +57,9 @@ $(NAME): $(OBJ)
 clean:
 	rm -rf $(OBJDIR)
 	make -C $(FT) clean
+	make -C $(FT_MLX) clean
 fclean: clean
 	rm -rf $(NAME)
 	make -C $(FT) fclean
+	make -C $(FT_MLX) clean
 re: fclean all

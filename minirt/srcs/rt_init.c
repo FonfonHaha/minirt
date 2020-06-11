@@ -92,8 +92,9 @@ void 	*rt_error(int k)
 t_mlx	*rt_init(const char *str)
 {
 	t_mlx	*mlx;
-	t_tout	t;
+	//t_tout	t;
 	int ret;
+	t_rtlist *lastcam;
 
 	if (!(mlx = ft_calloc(1, sizeof(*mlx))))
 		return (NULL);
@@ -103,8 +104,8 @@ t_mlx	*rt_init(const char *str)
 	if (mlx->lum_a_ok == 0 || mlx->y_ok == 0 || mlx->cfov_ok == 0)
 		return (rt_error(27));
 	mlx->win = mlx_new_window(mlx->ptr, mlx->x, mlx->y, "miniRT");
-	//donc on en est là, la fenêtre existe, il faut maintenant colorier les pixels.
-	if (rt_putpixel(mlx))
-		return (rt_error(13));
+	lastcam = rt_lstlast(mlx->cam);
+	lastcam->next = mlx->cam;
+	mlx->camu = mlx->cam;
 	return (mlx);
 }

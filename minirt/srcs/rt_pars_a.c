@@ -46,9 +46,6 @@ int     rt_past_a_ii(t_mlx *mlx, char *line)
 int     rt_pars_a_ii(t_mlx *mlx, char *line)
 {
     int i;
-    int r;
-    int g;
-    int b;
     char **tab;
 
     i = 0;
@@ -58,11 +55,11 @@ int     rt_pars_a_ii(t_mlx *mlx, char *line)
         return (23);
     if (!tab[0] || !tab[1] || !tab[2])
         return (11);
-    r = ft_atoi(tab[0]);
-    g = ft_atoi(tab[1]);
-    b = ft_atoi(tab[2]);
+    mlx->lumr = ft_atoi(tab[0]) * mlx->lum_a;
+    mlx->lumg = ft_atoi(tab[1]) * mlx->lum_a;
+    mlx->lumb = ft_atoi(tab[2]) * mlx->lum_a;
     ft_deltab(tab);
-    if ((mlx->lum_color = rt_color(r, g, b)) < 0)
+    if ((mlx->lum_color = rt_color(mlx->lumr, mlx->lumg, mlx->lumb)) < 0)
         return (22);
     mlx->lum_a_ok = 1;
     return (0);
