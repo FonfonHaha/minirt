@@ -31,7 +31,7 @@ SRC		= main.c \
 		  rt_lstlast.c \
 		  rt_putpixel.c \
 		  rt_c_sphere.c \
-		  rt_c_square.c
+		  rt_c_plan.c
 
 OBJ		= $(addprefix $(OBJDIR),$(SRC:.c=.o))
 CC		= gcc

@@ -35,6 +35,13 @@ float   findobject(t_mlx *mlx, t_rtlist *obj)
     {
         if ((retalii = c_sphere(obj, mlx)) < 0)
             return (retal);
+    //printf("-----------TEST ALPHA\nSPHERE %f\n\n", retalii);
+    }
+    else if (obj->type == 2)
+    {
+        if ((retalii = c_plan(obj, mlx)) < 0)
+            return (retal);
+    //printf("-----------TEST ALPHA\nPLAN %f\n\n", retalii);
     }
     else
         return (retal);
