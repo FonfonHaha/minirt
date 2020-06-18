@@ -51,12 +51,12 @@ float   findobject(t_mlx *mlx, t_rtlist *obj)
     {
         if ((retalii = c_cylindre(obj, mlx)) < 0)
             return (retal);
-    }
+    }*/
     else if (obj->type == 5)
     {
         if ((retalii = c_triangle(obj, mlx)) < 0)
             return (retal);
-    }*/
+    }
     else
         return (retal);
     if (retalii >= 0 && (retal > retalii || retal == -1))

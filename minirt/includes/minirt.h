@@ -64,6 +64,13 @@ typedef struct	s_vect
 	float z;
 }	t_vect;
 
+typedef struct s_triangle
+{
+	t_vect v0;
+	t_vect v1;
+	t_vect v2;
+}	t_tr;
+
 typedef struct s_tout
 {
 	t_rtlist *cam;
@@ -154,4 +161,11 @@ void    getcolorlum(t_mlx *mlx, t_rtlist *lum);
 void    getcolorf(t_mlx *mlx);
 float   c_sphere(t_rtlist *obj, t_mlx *mlx);
 float   c_plan(t_rtlist *obj, t_mlx *mlx);
+float   c_triangle(t_rtlist *obj, t_mlx *mlx);
+void    getvect(t_vect *v, t_vect a, t_vect b);
+void    getcoorp(t_tr *tri, t_rtlist *obj);
+void    getnormale(t_vect *tvn, t_vect t);
+void    prodv(t_vect *c, t_vect s, t_vect p);
+float   prods(t_vect tvn, t_vect c);
+void    getcoorinter(t_vect *p, t_mlx *mlx, float al);
 #endif
