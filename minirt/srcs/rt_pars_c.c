@@ -53,7 +53,7 @@ int     rt_get_cori(t_rtlist *cam, char *line, t_mlx *mlx)
         i++;
     if (!line[i])
         return (1);
-    cam->y2 = ft_atof(line + i);
+    cam->y2 = ft_atof(line + i) * -1;
     while (line[i] && ((line[i] >= '0' && line[i] <= '9') || line[i] == '-'
             || line[i] == '.'))
         i++;
@@ -80,7 +80,7 @@ int     rt_get_ccoor(t_rtlist *cam, char *line, t_mlx *mlx)
         i++;
     if (!line[i])
         return (1);
-    cam->y = ft_atof(line + i);
+    cam->y = ft_atof(line + i) * -1;
     while (line[i] && ((line[i] >= '0' && line[i] <= '9') || line[i] == '-'))
         i++;
     while (line[i] && (line[i] < '0' || line [i] > '9') && line[i] != '-')

@@ -27,7 +27,7 @@ int     rt_get_objcoor2(t_rtlist *obj, char *line)
         return (15);
     }
     obj->x2 = ft_atof(tab[0]);
-    obj->y2 = ft_atof(tab[1]);
+    obj->y2 = ft_atof(tab[1])* -1;
     obj->z2 = ft_atof(tab[2]);
     ft_deltab(tab);
     return (0);
@@ -47,7 +47,7 @@ int     rt_get_objcoor3(t_rtlist *obj, char *line)
         return (15);
     }
     obj->x3 = ft_atof(tab[0]);
-    obj->y3 = ft_atof(tab[1]);
+    obj->y3 = ft_atof(tab[1])* -1;
     obj->z3 = ft_atof(tab[2]);
     ft_deltab(tab);
     return (0);

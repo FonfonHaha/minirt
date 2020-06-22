@@ -57,7 +57,7 @@ int     rt_get_objvector(t_rtlist *obj, char *line)
         return (16);
     }
     obj->vx = ft_atof(tab[0]);
-    obj->vy = ft_atof(tab[1]);
+    obj->vy = ft_atof(tab[1]) * -1;
     obj->vz = ft_atof(tab[2]);
     ft_deltab(tab);
     if (rt_vectorverif(obj->vx) || rt_vectorverif(obj->vy) || rt_vectorverif(obj->vz))
@@ -80,7 +80,7 @@ int     rt_get_objcoor(t_rtlist *obj, char *line)
         return (15);
     }
     obj->x = ft_atof(tab[0]);
-    obj->y = ft_atof(tab[1]);
+    obj->y = ft_atof(tab[1]) * -1;
     obj->z = ft_atof(tab[2]);
     ft_deltab(tab);
     return (0);
