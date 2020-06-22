@@ -37,14 +37,17 @@ void    getcoorp(t_tr *tri, t_rtlist *obj)
 void    getnormale(t_vect *tvn, t_vect t)
 {
     float n;
+    float x;
+    float y;
+    float z;
 
-    t.x = t.x < 0 ? t.x * -1 : t.x;
-    t.y = t.y < 0 ? t.y * -1 : t.y;
-    t.z = t.z < 0 ? t.z * -1 : t.z;
+    x = t.x < 0 ? t.x * -1 : t.x;
+    y = t.y < 0 ? t.y * -1 : t.y;
+    z = t.z < 0 ? t.z * -1 : t.z;
     n = t.z;
-    if (t.x > t.y && t.x > t.z)
+    if (x > y && x > z)
         n = t.x;
-    else if (t.y > t.z)
+    else if (y > z)
         n = t.y;
     tvn->x = t.x / n;
     tvn->y = t.y / n;
