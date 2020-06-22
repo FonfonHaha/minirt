@@ -34,7 +34,6 @@ int     rt_get_cori_ii(t_rtlist *cam)
         return (26);
     if (cam->z2 < - 1.0 || cam->z2 > 1.0)
         return (26);
-    printf("\n\n-------------TEST------------------- %f\n\n", cam->y2);
     return (0);
 }
 
@@ -58,7 +57,7 @@ int     rt_get_cori(t_rtlist *cam, char *line, t_mlx *mlx)
     while (line[i] && ((line[i] >= '0' && line[i] <= '9') || line[i] == '-'
             || line[i] == '.'))
         i++;
-    while (line[i] && (line[i] < '0' || line [i] > '9') &&  line[i] == '-')
+    while (line[i] && (line[i] < '0' || line [i] > '9') && line[i] != '-')
         i++;
     if (!line[i])
         return (1);
@@ -77,14 +76,14 @@ int     rt_get_ccoor(t_rtlist *cam, char *line, t_mlx *mlx)
     cam->x = ft_atof(line + i);
     while (line[i] && ((line[i] >= '0' && line[i] <= '9') || line[i] == '-'))
         i++;
-    while (line[i] && (line[i] < '0' && line [i] > '9' && line[i] != '-'))
+    while (line[i] && (line[i] < '0' || line [i] > '9') && line[i] != '-')
         i++;
     if (!line[i])
         return (1);
     cam->y = ft_atof(line + i);
     while (line[i] && ((line[i] >= '0' && line[i] <= '9') || line[i] == '-'))
         i++;
-    while (line[i] && (line[i] < '0' && line [i] > '9' && line[i] != '-'))
+    while (line[i] && (line[i] < '0' || line [i] > '9') && line[i] != '-')
         i++;
     if (!line[i])
         return (1);
@@ -114,10 +113,9 @@ int     rt_pars_c_ii(t_rtlist *cam, char *line, t_mlx *mlx)
         i++;
     while (line[i] && (line[i] < '0' || line [i] > '9')  && line[i] != '-')
         i++;
-    printf("\n\n-------------TEST------------------- caca%s %d\n\n", line + i, i);
     if (rt_get_cfov(cam, line + i, mlx))
         return (9);
-    printf("--------------TEST----------\n\nx %f\ny %f\nz %f\nvx %f\nvy %f\nvz %f\nfov %d\n\n\n---------------TEST-------------\n", mlx->cx, mlx->cy, mlx->cz, mlx->corix, mlx->coriy, mlx->coriz, mlx->cfov);
+    printf("--------------TEST CAMERA----------\n\nx %f\ny %f\nz %f\nvx %f\nvy %f\nvz %f\nfov %f\n\n\n---------------TEST-------------\n", cam->x, cam->y, cam->z, cam->x2, cam->y2, cam->z2, cam->z3);
     return (0);
 }
 
