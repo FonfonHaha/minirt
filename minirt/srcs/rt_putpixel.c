@@ -41,12 +41,13 @@ float   findobject(t_mlx *mlx, t_rtlist *obj)
     {
         if ((retalii = c_plan(obj, mlx)) < 0)
             return (retal);
-    }/*
+    }
     else if (obj->type == 3)
     {
         if ((retalii = c_carre(obj, mlx)) < 0)
             return (retal);
-    }
+    //printf("-----------TEST ALPHA\nCARRE %f\n\n", retalii);
+    }/*
     else if (obj->type == 4)
     {
         if ((retalii = c_cylindre(obj, mlx)) < 0)

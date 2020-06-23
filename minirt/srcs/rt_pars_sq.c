@@ -21,7 +21,27 @@ int     rt_get_sqheight(t_rtlist *obj, char *line)
     return (0);
 }
 
-
+void    getcorner(t_vect a, t_vect b, t_vect c, t_vect d, t_rtlist *obj)
+{
+    obj->va.x = a.x + obj->x;
+    obj->va.y = a.y + obj->y;
+    obj->va.z = a.z + obj->z;
+    obj->vb.x = b.x + obj->x;
+    obj->vb.y = b.y + obj->y;
+    obj->vb.z = b.z + obj->z;
+    obj->vc.x = c.x + obj->x;
+    obj->vc.y = c.y + obj->y;
+    obj->vc.z = c.z + obj->z;
+    obj->vd.x = d.x + obj->x;
+    obj->vd.y = d.y + obj->y;
+    obj->vd.z = d.z + obj->z;
+    obj->ab.x = obj->vb.x - obj->va.x;
+    obj->ab.y = obj->vb.y - obj->va.y;
+    obj->ab.z = obj->vb.z - obj->va.z;
+    obj->ac.x = obj->vc.x - obj->va.x;
+    obj->ac.y = obj->vc.y - obj->va.y;
+    obj->ac.z = obj->vc.z - obj->va.z;
+}
 
 void    rt_pars_sq_iii(t_rtlist *obj)
 {
@@ -38,7 +58,7 @@ void    rt_pars_sq_iii(t_rtlist *obj)
     rot(&b, obj);
     rot(&c, obj);
     rot(&d, obj);
-    getcorner(a, obj);
+    getcorner(a, b, c, d, obj);
 }
 
 int     rt_pars_sq_ii(t_rtlist *obj, char **tab)

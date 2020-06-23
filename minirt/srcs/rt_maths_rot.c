@@ -44,16 +44,16 @@ void		rz(t_vect *vect, float z)
 	*vect = tmp;
 }
 
-void		rot(t_vect *vect, t_vect *angle)
+void		rot(t_vect *vect, t_rtlist *obj)
 {
-	rx(vect, angle->x2);
-	ry(vect, angle->y2);
-	rz(vect, angle->z2);
+	rx(vect, obj->x2);
+	ry(vect, obj->y2);
+	rz(vect, obj->z2);
 }
 
-void		anti_rot(t_vect *vect, t_vect *angle)
+void		anti_rot(t_vect *vect, t_rtlist *obj)
 {
-	rz(vect, -angle->z);
-	ry(vect, -angle->y);
-	rx(vect, -angle->x);
+	rz(vect, -obj->z);
+	ry(vect, -obj->y);
+	rx(vect, -obj->x);
 }

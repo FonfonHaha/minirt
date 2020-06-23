@@ -29,6 +29,13 @@
 ** 7 camera
 */
 
+typedef struct	s_vect
+{
+	float x;
+	float y;
+	float z;
+}	t_vect;
+
 typedef struct	s_rtlist
 {
 	int				type;
@@ -45,6 +52,8 @@ typedef struct	s_rtlist
 	t_vect				vb;
 	t_vect				vc;
 	t_vect				vd;
+	t_vect				ab;
+	t_vect				ac;
 	int				coor_ok;
 	int				r;
 	int				g;
@@ -60,13 +69,6 @@ typedef struct	s_rtlist
     float             h;
 	struct s_rtlist	*next;
 }				t_rtlist;
-
-typedef struct	s_vect
-{
-	float x;
-	float y;
-	float z;
-}	t_vect;
 
 typedef struct s_triangle
 {
@@ -166,12 +168,13 @@ void    getcolorf(t_mlx *mlx);
 float   c_sphere(t_rtlist *obj, t_mlx *mlx);
 float   c_plan(t_rtlist *obj, t_mlx *mlx);
 float   c_triangle(t_rtlist *obj, t_mlx *mlx);
+float   c_carre(t_rtlist *obj, t_mlx *mlx);
 void    getvect(t_vect *v, t_vect a, t_vect b);
 void    getcoorp(t_tr *tri, t_rtlist *obj);
 void    getnormale(t_vect *tvn, t_vect t);
 void    prodv(t_vect *c, t_vect s, t_vect p);
 float   prods(t_vect tvn, t_vect c);
 void    getcoorinter(t_vect *p, t_mlx *mlx, float al);
-void		rot(t_vect *vect, t_vect *angle);
+void		rot(t_vect *vect, t_rtlist *obj);
 void    newvect(t_vect *v, float x, float y, float z);
 #endif
