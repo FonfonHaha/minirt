@@ -41,6 +41,10 @@ typedef struct	s_rtlist
 	float				z;
 	float				z2;
 	float				z3;//z3 pour la camera = fov
+	t_vect				va;//pour carre
+	t_vect				vb;
+	t_vect				vc;
+	t_vect				vd;
 	int				coor_ok;
 	int				r;
 	int				g;
@@ -168,4 +172,6 @@ void    getnormale(t_vect *tvn, t_vect t);
 void    prodv(t_vect *c, t_vect s, t_vect p);
 float   prods(t_vect tvn, t_vect c);
 void    getcoorinter(t_vect *p, t_mlx *mlx, float al);
+void		rot(t_vect *vect, t_vect *angle);
+void    newvect(t_vect *v, float x, float y, float z);
 #endif

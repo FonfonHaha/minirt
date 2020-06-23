@@ -21,6 +21,26 @@ int     rt_get_sqheight(t_rtlist *obj, char *line)
     return (0);
 }
 
+
+
+void    rt_pars_sq_iii(t_rtlist *obj)
+{
+    t_vect a;
+    t_vect b;
+    t_vect c;
+    t_vect d;
+
+    newvect(&a, obj->h /2, obj->h /2, 0);
+    newvect(&b, - obj->h /2, obj->h /2, 0);
+    newvect(&c, obj->h /2, - obj->h /2, 0);
+    newvect(&d, - obj->h /2, - obj->h /2, 0);
+    rot(&a, obj);
+    rot(&b, obj);
+    rot(&c, obj);
+    rot(&d, obj);
+    getcorner(a, obj);
+}
+
 int     rt_pars_sq_ii(t_rtlist *obj, char **tab)
 {
     int ret;
@@ -32,6 +52,7 @@ int     rt_pars_sq_ii(t_rtlist *obj, char **tab)
         return (ret);
     if ((ret = rt_get_objcolor(obj, tab[4])))
         return (ret);
+    rt_pars_sq_iii(obj);
     return (0);
 }
 

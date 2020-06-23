@@ -36,7 +36,8 @@ SRC		= main.c \
 		  rt_c_cylindre.c \
 		  rt_c_triangle.c \
 		  rt_maths.c \
-		  rt_mathsii.c
+		  rt_mathsii.c \
+		  rt_maths_rot.c 
 
 OBJ		= $(addprefix $(OBJDIR),$(SRC:.c=.o))
 CC		= gcc

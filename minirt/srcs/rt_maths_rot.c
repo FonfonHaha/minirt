@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   rt_mathsii.c                                       :+:      :+:    :+:   */
+/*   rt_maths_rot.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pcoureau <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -14,26 +14,46 @@
 #include "keys.h"
 #include <math.h>
 
-void    getcoorinter(t_vect *p, t_mlx *mlx, float al)
+void		rx(t_vect *vect, float x)
 {
-    p->x = mlx->camu->x + mlx->vx * al;
-    p->y = mlx->camu->y + mlx->vy * al;
-    p->z = mlx->camu->z + mlx->vz * al;
+	t_vect	tmp;
+
+	tmp.x = vect->x;
+	tmp.y = vect->y * cos(x) - vect->z * sin(x);
+	tmp.z = vect->y * sin(x) + vect->z * cos(x);
+	*vect = tmp;
 }
 
-void    newvect(t_vect *v, float x, float y, float z)
+void		ry(t_vect *vect, float y)
 {
-    v->x = x;
-    v->y = y;
-    v->z = z;
+	t_vect	tmp;
+
+	tmp.x = vect->x * cos(y) + vect->z * sin(y);
+	tmp.y = vect->y;
+	tmp.z = vect->x * -sin(y) + vect->z * cos(y);
+	*vect = tmp;
 }
 
-void    addvect(t_vect v, t_vect w, t_vect *d)
+void		rz(t_vect *vect, float z)
 {
-    t_vect tmp;
+	t_vect	tmp;
 
-    tmp.x = v.x + w.x;
-    tmp.y = v.y + w.y;
-    tmp.z = v.z + w.z;
-    *d = tmp;
+	tmp.x = vect->x * cos(z) - vect->y * sin(z);
+	tmp.y = vect->x * sin(z) + vect->y * cos(z);
+	tmp.z = vect->z;
+	*vect = tmp;
+}
+
+void		rot(t_vect *vect, t_vect *angle)
+{
+	rx(vect, angle->x2);
+	ry(vect, angle->y2);
+	rz(vect, angle->z2);
+}
+
+void		anti_rot(t_vect *vect, t_vect *angle)
+{
+	rz(vect, -angle->z);
+	ry(vect, -angle->y);
+	rx(vect, -angle->x);
 }
