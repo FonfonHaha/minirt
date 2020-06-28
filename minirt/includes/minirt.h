@@ -177,4 +177,5 @@ float   prods(t_vect tvn, t_vect c);
 void    getcoorinter(t_vect *p, t_mlx *mlx, float al);
 void		rot(t_vect *vect, t_rtlist *obj);
 void    newvect(t_vect *v, float x, float y, float z);
+float   dist_p(t_vect p1, t_vect p2);
 #endif
