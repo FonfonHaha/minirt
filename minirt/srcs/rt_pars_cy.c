@@ -27,6 +27,31 @@ int     rt_get_cydiam(t_rtlist *obj, char *line)
     return (0);
 }
 
+int     rt_pars_cy_iii(t_rtlist *obj)
+{
+    t_vect  temp;
+    t_vect  p1;
+    t_vect  p2;
+    float   t;
+
+    t = fabs(obj->vx) + fabs(obj->vy) + fabs(obj->vz);
+    temp.x = obj->h / 2 * (obj->vx / t);
+    temp.y = obj->h / 2 * (obj->vy / t);
+    temp.z = obj->h / 2 * (obj->vz / t);
+    p1.x = obj->x + temp.x;
+    p1.y = obj->y + temp.y;
+    p1.z = obj->z + temp.z;
+    temp.x = - obj->h / 2 * (obj->vx / t);
+    temp.y = - obj->h / 2 * (obj->vy / t);
+    temp.z = - obj->h / 2 * (obj->vz / t);
+    p2.x = obj->x + temp.x;
+    p2.y = obj->y + temp.y;
+    p2.z = obj->z + temp.z;
+    obj->h = dist_p(p1, p2);
+    obj->x2 = 1 / (obj->vx * obj->vx + obj->vy * obj->vy + obj->vz * obj->vz);
+    return (0);
+}
+
 int     rt_pars_cy_ii(t_rtlist *obj, char **tab)
 {
     int ret;
@@ -40,7 +65,7 @@ int     rt_pars_cy_ii(t_rtlist *obj, char **tab)
         return (ret);
     if ((ret = rt_get_objcolor(obj, tab[5])))
         return (ret);
-    return (0);
+    return (rt_pars_cy_iii(obj));
 }
 
 int     rt_pars_cy(t_mlx *mlx, char *line)

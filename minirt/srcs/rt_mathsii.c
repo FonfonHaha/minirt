@@ -37,3 +37,10 @@ void    addvect(t_vect v, t_vect w, t_vect *d)
     tmp.z = v.z + w.z;
     *d = tmp;
 }
+
+float   dist_p(t_vect p1, t_vect p2)
+{
+    return (sqrt((p2.x - p1.x) * (p2.x - p1.x)
+        - (p2.y - p1.y) * (p2.y - p1.y)
+        - (p2.z - p1.z) - (p2.z - p1.z)));
+}
