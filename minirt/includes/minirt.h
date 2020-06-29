@@ -169,6 +169,9 @@ float   c_sphere(t_rtlist *obj, t_mlx *mlx);
 float   c_plan(t_rtlist *obj, t_mlx *mlx);
 float   c_triangle(t_rtlist *obj, t_mlx *mlx);
 float   c_carre(t_rtlist *obj, t_mlx *mlx);
+float   c_cy_v(float d[8], t_mlx *mlx, t_rtlist *obj);
+float   c_cy_iv(float d[8], t_mlx *mlx, t_rtlist *obj);
+float   c_cylindre(t_rtlist *obj, t_mlx *mlx);
 void    getvect(t_vect *v, t_vect a, t_vect b);
 void    getcoorp(t_tr *tri, t_rtlist *obj);
 void    getnormale(t_vect *tvn, t_vect t);
@@ -178,4 +181,6 @@ void    getcoorinter(t_vect *p, t_mlx *mlx, float al);
 void		rot(t_vect *vect, t_rtlist *obj);
 void    newvect(t_vect *v, float x, float y, float z);
 float   dist_p(t_vect p1, t_vect p2);
+void    prodvect(t_vect v, float n, t_vect *d);
+void    addvect(t_vect v, t_vect w, t_vect *d);
 #endif

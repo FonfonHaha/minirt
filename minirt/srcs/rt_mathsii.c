@@ -38,9 +38,19 @@ void    addvect(t_vect v, t_vect w, t_vect *d)
     *d = tmp;
 }
 
+void    prodvect(t_vect v, float n, t_vect *d)
+{
+    t_vect tmp;
+
+    tmp.x = v.x * n;
+    tmp.y = v.y * n;
+    tmp.z = v.z * n;
+    *d = tmp;
+}
+
 float   dist_p(t_vect p1, t_vect p2)
 {
     return (sqrt((p2.x - p1.x) * (p2.x - p1.x)
         - (p2.y - p1.y) * (p2.y - p1.y)
-        - (p2.z - p1.z) - (p2.z - p1.z)));
+        - (p2.z - p1.z) * (p2.z - p1.z)));
 }

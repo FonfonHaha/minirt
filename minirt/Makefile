@@ -33,6 +33,7 @@ SRC		= main.c \
 		  rt_c_sphere.c \
 		  rt_c_plan.c \
 		  rt_c_carre.c \
+		  rt_c_cylindre_ii.c \
 		  rt_c_cylindre.c \
 		  rt_c_triangle.c \
 		  rt_maths.c \

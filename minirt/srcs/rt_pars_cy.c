@@ -12,6 +12,7 @@
 
 #include "minirt.h"
 #include "keys.h"
+#include <math.h>
 
 int     rt_get_cyheight(t_rtlist *obj, char *line)
 {
@@ -30,24 +31,22 @@ int     rt_get_cydiam(t_rtlist *obj, char *line)
 int     rt_pars_cy_iii(t_rtlist *obj)
 {
     t_vect  temp;
-    t_vect  p1;
-    t_vect  p2;
     float   t;
 
     t = fabs(obj->vx) + fabs(obj->vy) + fabs(obj->vz);
     temp.x = obj->h / 2 * (obj->vx / t);
     temp.y = obj->h / 2 * (obj->vy / t);
     temp.z = obj->h / 2 * (obj->vz / t);
-    p1.x = obj->x + temp.x;
-    p1.y = obj->y + temp.y;
-    p1.z = obj->z + temp.z;
+    obj->vb.x = obj->x + temp.x;
+    obj->vb.y = obj->y + temp.y;
+    obj->vb.z = obj->z + temp.z;
     temp.x = - obj->h / 2 * (obj->vx / t);
     temp.y = - obj->h / 2 * (obj->vy / t);
     temp.z = - obj->h / 2 * (obj->vz / t);
-    p2.x = obj->x + temp.x;
-    p2.y = obj->y + temp.y;
-    p2.z = obj->z + temp.z;
-    obj->h = dist_p(p1, p2);
+    obj->vc.x = obj->x + temp.x;
+    obj->vc.y = obj->y + temp.y;
+    obj->vc.z = obj->z + temp.z;
+    obj->h = dist_p(obj->vb, obj->vc);
     obj->x2 = 1 / (obj->vx * obj->vx + obj->vy * obj->vy + obj->vz * obj->vz);
     return (0);
 }
