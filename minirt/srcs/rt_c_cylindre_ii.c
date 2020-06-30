@@ -35,14 +35,14 @@ float   c_cy_v(float d[8], t_mlx *mlx, t_rtlist *obj)
         point.z = mlx->camu->z + temp.z;
         d[0] = dist_p(point, obj->vc);
         d[1] = sqrt((mlx->camu->x - point.x) * (mlx->camu->x - point.x)
-            - (mlx->camu->y - point.y) * (mlx->camu->y - point.y)
-            - (mlx->camu->z - point.z) * (mlx->camu->z - point.z));
+            + (mlx->camu->y - point.y) * (mlx->camu->y - point.y)
+            + (mlx->camu->z - point.z) * (mlx->camu->z - point.z));
         if (d[0] < (obj->diam / 2) && (!(d[2] > obj->h || d[3] > obj->h)))
             return (d[4]);
         if (d[0] < (obj->diam / 2))
             return (d[5]);
     }
-    if (d[4] > obj->h || d[3] > obj->h)
+    if (d[2] > obj->h || d[3] > obj->h)
         return (-1);
     return (d[4]);
 }
@@ -68,8 +68,8 @@ float   c_cy_iv(float d[8], t_mlx *mlx, t_rtlist *obj)
         point.z = mlx->camu->z + temp.z;
         d[0] = dist_p(point, obj->vb);
         d[1] = sqrt((mlx->camu->x - point.x) * (mlx->camu->x - point.x)
-            - (mlx->camu->y - point.y) * (mlx->camu->y - point.y)
-            - (mlx->camu->z - point.z) * (mlx->camu->z - point.z));
+            + (mlx->camu->y - point.y) * (mlx->camu->y - point.y)
+            + (mlx->camu->z - point.z) * (mlx->camu->z - point.z));
         if (d[0] < (obj->diam / 2) && (!(d[2] > obj->h || d[3] > obj->h)))
             return (d[4]);
         if (d[0] < (obj->diam / 2))

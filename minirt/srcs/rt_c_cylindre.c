@@ -17,8 +17,8 @@
 void    init_cy(t_rtlist *c, t_rtlist *obj)
 {
     obj->va.x = c->x - obj->x;
-    obj->va.y = c->x - obj->y;
-    obj->va.z = c->x - obj->z;
+    obj->va.y = c->y - obj->y;
+    obj->va.z = c->z - obj->z;
     obj->y2 = prods(obj->va, obj->va);
     obj->z2 = obj->vx * obj->va.x + obj->vy * obj->va.y + obj->vz * obj->va.z;
 }
@@ -35,16 +35,16 @@ float   c_cy_iii(float d[8], t_mlx *mlx, t_rtlist *obj)
     temp0.x = mlx->vx * d[4];
     temp0.y = mlx->vy * d[4];
     temp0.z = mlx->vz * d[4];
-    point.x = mlx->vx + temp0.x;
-    point.y = mlx->vy + temp0.y;
-    point.z = mlx->vz + temp0.z;
+    point.x = mlx->camu->x + temp0.x;
+    point.y = mlx->camu->y + temp0.y;
+    point.z = mlx->camu->z + temp0.z;
     denom = -(obj->vx * obj->vc.x + obj->vy * obj->vc.y + obj->vz * obj->vc.z);
     d[5] = (obj->vx * point.x + obj->vy * point.y + obj->vz * point.z) + denom;
     temp1.x = obj->vx * -1;
     temp1.y = obj->vy * -1;
     temp1.z = obj->vz * -1;
     d[6] = obj->vx * temp1.x + obj->vy * temp1.y + obj->vz * temp1.z;
-    k = - (d[5]/d[6]);
+    k = - (d[5] / d[6]);
     temp0.x = temp1.x * k;
     temp0.y = temp1.y * k;
     temp0.z = temp1.z * k;
@@ -91,14 +91,14 @@ float   c_cylindre(t_rtlist *obj, t_mlx *mlx)
 
     init_cy(mlx->camu, obj);
     cal_b = mlx->vx * obj->vx + mlx->vy * obj->vy + mlx->vz * obj->vz;
-    d[0] = mlx->vx * obj->vx + mlx->vy * obj->vy + mlx->vz * obj->vz
+    d[0] = mlx->vx * mlx->vx + mlx->vy * mlx->vy + mlx->vz * mlx->vz
         - (cal_b * cal_b * obj->x2);
     d[1] = 2
         * (mlx->vx * obj->va.x + mlx->vy * obj->va.y + mlx->vz * obj->va.z)
         - (2 * cal_b * obj->x2 * obj->z2);
-    d[2] = obj->y2 - ((obj->diam / 2) * (obj->diam / 2) - obj->z2 * obj->z2
+    d[2] = obj->y2 - ((obj->diam / 2) * (obj->diam / 2)) - (obj->z2 * obj->z2
         * obj->x2);
-    if ((delta = d[1] * d[1] - (4 * d[0] * d[2])) < 0)
+    if ((delta = (d[1] * d[1]) - (4 * d[0] * d[2])) < 0)
         return (-1);
     d[3] = (-d[1] + sqrt(delta)) / (2 * d[0]);
     d[4] = (-d[1] - sqrt(delta)) / (2 * d[0]);
