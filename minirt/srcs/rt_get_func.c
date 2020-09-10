@@ -30,6 +30,7 @@ static void	create_tab(t_funct *tab)
 t_funct		rt_get_funct(char *s)
 {
 	static t_funct	*tab = NULL;
+
 	if (!tab)
 	{
 		if (!(tab = malloc(sizeof(t_funct) * 256)))

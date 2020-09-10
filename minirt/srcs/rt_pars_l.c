@@ -124,7 +124,6 @@ int     rt_pars_l_ii(t_rtlist *lum, char *line)
         i++;
     if (rt_get_lratio(lum, line + i))
         return (12);
-    printf("---------------LE TEST DE LAMOUR <3<3<3\n|%s|\n----------END", line + i);
     while (line[i] && ((line[i] >= '0' && line[i] <= '9') || line[i] == '.'))
         i++;
     while (line[i] && (line[i] < '0' || line [i] > '9'))
