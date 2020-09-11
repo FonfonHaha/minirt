@@ -33,7 +33,7 @@ float   c_sphere(t_rtlist *obj, t_mlx *mlx)
     c = ((xr - obj->x) * (xr - obj->x) + (yr - obj->y) * (yr - obj->y) + (zr - obj->z) * (zr - obj->z) - obj->diam * obj->diam);
     if (((b*b) - (4*a*c)) < 0)
         return (-1);
-    alpha = (-b + sqrtf((b*b) - (4*a*c))) / 2 * a;
-    alphaii =  (-b - sqrtf((b*b) - (4*a*c))) / 2 * a;
+    alpha = (-b + sqrtf((b*b) - (4*a*c))) / (2 * a);
+    alphaii =  (-b - sqrtf((b*b) - (4*a*c))) / (2 * a);
     return (alpha < alphaii ? alpha : alphaii);
 }

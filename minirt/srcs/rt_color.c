@@ -27,16 +27,20 @@ void    getcolorlum(t_mlx *mlx, t_rtlist *lum)
     mlx->b = lum->b > mlx->b ? lum->b : mlx->b;
 }
 
-void    getcolorf(t_mlx *mlx)
+int    getcolorf(t_mlx *mlx)
 {
     if (mlx->al < 0)
+    {
         mlx->colorf = 0;
+        return (0);
+    }
     else
     {
         mlx->r = (mlx->or * mlx->r) / 255;
         mlx->g = (mlx->og * mlx->g) / 255;
         mlx->b = (mlx->ob * mlx->b) / 255;
         mlx->colorf = rt_color(mlx->r, mlx->g, mlx->b);
+        return (0);
     }
 }
 
