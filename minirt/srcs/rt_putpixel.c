@@ -69,13 +69,15 @@ float   findobject(t_mlx *mlx, t_rtlist *obj)
         return (retal);
 }
 
-void    rt_putpixel_ii(t_mlx *mlx)
+int    rt_putpixel_ii(t_mlx *mlx)
 {
     mlx->colorf = 0;
     mlx->al = -1;
     mlx->al = findobject(mlx, mlx->obj);
-    getcolorf(mlx);
+    if (getcolorf(mlx) < 0)
+        return(-1);
     mlx_pixel_put(mlx->ptr, mlx->win, mlx->px, mlx->py, mlx->colorf);
+    return (1);
 }
 
 int     rt_putpixel(t_mlx *mlx)
@@ -89,8 +91,9 @@ int     rt_putpixel(t_mlx *mlx)
             mlx->r = mlx->lumr;
             mlx->g = mlx->lumg;
             mlx->b = mlx->lumb;
-            rt_equray(mlx);
-            rt_putpixel_ii(mlx);
+            rt_equray(mlx) < 0;
+            if (rt_putpixel_ii(mlx) < 0)
+                return (-1);
             mlx->px++;
         }
         mlx->py++;

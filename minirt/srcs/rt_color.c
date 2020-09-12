@@ -36,6 +36,8 @@ int    getcolorf(t_mlx *mlx)
     }
     else
     {
+        if (islum(mlx) < 0)
+            return (-1)
         mlx->r = (mlx->or * mlx->r) / 255;
         mlx->g = (mlx->og * mlx->g) / 255;
         mlx->b = (mlx->ob * mlx->b) / 255;

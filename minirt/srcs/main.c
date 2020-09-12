@@ -88,7 +88,11 @@ int		main(int ac, char **av)
 		//les couleurs on recupere les rgb quon additionne avec la lumiere et quon divise par deux pour faire une moyenne et on est content.
 		//la couleur ne passe ne int que au moment d'afficher le pixel !
 		//rt_putpixel va ici
-		rt_putpixel(mlx);
+		if (rt_putpixel(mlx) < 0)
+		{
+			ft_printf("Error on obj malloc\n");
+			return (0);
+		}
 		//Du coup, il faut ici creer un t_tout avec la camera dedans
 		check(mlx);
 		mlx_key_hook(mlx->win, rt_hook_keydown, mlx->ptr);

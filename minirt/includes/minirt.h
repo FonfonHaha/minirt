@@ -183,4 +183,5 @@ void    newvect(t_vect *v, float x, float y, float z);
 float   dist_p(t_vect p1, t_vect p2);
 void    prodvect(t_vect v, float n, t_vect *d);
 void    addvect(t_vect v, t_vect w, t_vect *d);
+int		islum(t_mlx *mlx);
 #endif
